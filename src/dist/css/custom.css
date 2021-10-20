@@ -378,3 +378,6 @@ h3,h2,a {
 .autocomplete-suggestion {
   text-align: right;
 }
+.nav-submenu{
+  cursor: pointer;
+}

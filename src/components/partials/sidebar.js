@@ -1,6 +1,12 @@
+import { useEffect, useRef } from "react";
+
 const SideBar = () => {
 
 
+
+    const handleSideBar = (e) => {
+        console.log(e)
+    }
     return (
         <>
             <nav id="sidebar">
@@ -44,7 +50,22 @@ const SideBar = () => {
                                     </a>
                                 </li>
                                 <li>
-                                    <a className="nav-submenu"  >
+                                    <a className="nav-submenu" onClick={handleSideBar}>
+                                        <i className="si si-puzzle" />
+                                        <span className="sidebar-mini-hide">پست ها</span>
+                                    </a>
+                                    <ul>
+                                        <li>
+                                            <a href="#">ایجاد پست</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">لیست پست ها</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li>
+                                    <a className="nav-submenu"  onClick={handleSideBar}>
                                         <i className="si si-puzzle" />
                                         <span className="sidebar-mini-hide">پست ها</span>
                                     </a>
@@ -62,8 +83,6 @@ const SideBar = () => {
                     </div>
                 </div>
             </nav>
-
-
         </>
     )
 }
