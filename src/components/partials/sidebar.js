@@ -24,11 +24,11 @@ const SideBar = () => {
                                 align-parent
                                 sidebar-mini-hidden
                                 ">
-                                <button type="button" className="btn btn-circle btn-dual-secondary d-lg-none align-v-l" data-toggle="layout" data-action="sidebar_close">
+                                <button type="button" className="btn btn-circle btn-dual-secondary d-lg-none align-v-l"  >
                                     <i className="fa fa-times text-danger" />
                                 </button>
                                 <div className="content-header-item">
-                                    <a className="link-effect font-w700" href="true">
+                                    <a className="link-effect font-w700" href="#">
                                         <i className="si si-fire text-primary" />
                                         <span className="font-size-xl text-dual-primary-dark">node</span><span className="font-size-xl text-primary">panel</span>
                                     </a>
@@ -38,13 +38,13 @@ const SideBar = () => {
                         <div className="content-side content-side-full">
                             <ul className="nav-main">
                                 <li>
-                                    <a className="active" href="true">
+                                    <a className="active" href="#">
                                         <i className="si si-cup" />
                                         <span className="sidebar-mini-hide">داشبورد</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a className="nav-submenu" data-toggle="nav-submenu" href="true">
+                                    <a className="nav-submenu"  >
                                         <i className="si si-puzzle" />
                                         <span className="sidebar-mini-hide">پست ها</span>
                                     </a>

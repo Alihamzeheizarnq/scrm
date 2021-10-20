@@ -8,15 +8,15 @@ const Aside = () => {
                     <div className="content-header content-header-fullrow">
                         <div className="content-header-section align-parent">
                             <button type="button" className="btn btn-circle btn-dual-secondary align-v-l"
-                                    data-toggle="layout" data-action="side_overlay_close">
-                                <i className="test"/>
+                            >
+                                <i className="test" />
                             </button>
                             <div className="content-header-item">
-                                <a className="img-link ml-5" href="true">
-                                    <img className="img-avatar img-avatar32"  alt="true"/>
+                                <a className="img-link ml-5" href="#">
+                                    <img className="img-avatar img-avatar32" alt="true" />
                                 </a>
                                 <a className="align-middle link-effect text-primary-dark font-w600"
-                                   href="true">Admin</a>
+                                    href="#">Admin</a>
                             </div>
                         </div>
                     </div>
@@ -29,10 +29,10 @@ const Aside = () => {
                                 <form>
                                     <div className="input-group">
                                         <input type="text" className="form-control" id="side-overlay-search"
-                                               name="side-overlay-search" placeholder="Search.."/>
+                                            name="side-overlay-search" placeholder="Search.." />
                                         <div className="input-group-append">
                                             <button type="submit" className="btn btn-square btn-secondary px-10">
-                                                <i className="fa fa-search"/>
+                                                <i className="fa fa-search" />
                                             </button>
                                         </div>
                                     </div>
@@ -70,12 +70,12 @@ const Aside = () => {
                             <div className="block-header bg-body-light">
                                 <h3 className="block-title">Title</h3>
                                 <div className="block-options pl-0">
-                                    <button type="button" className="btn-block-option" data-toggle="block-option"
-                                            data-action="state_toggle" data-action-mode="demo">
-                                        <i className="si si-refresh"/>
+                                    <button type="button" className="btn-block-option"
+                                    >
+                                        <i className="si si-refresh" />
                                     </button>
-                                    <button type="button" className="btn-block-option" data-toggle="block-option"
-                                            data-action="content_toggle"/>
+                                    <button type="button" className="btn-block-option"
+                                    />
                                 </div>
                             </div>
                             <div className="block-content">
