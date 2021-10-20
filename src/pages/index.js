@@ -1,0 +1,33 @@
+const App = () => {
+    return (
+        <>
+            <main id="main-container">
+                <div className="content">
+                    <div className="block">
+                        <div className="block-header block-header-default">
+                            <h3 className="block-title"><small>Get Started</small> Blank</h3>
+                            <div className="block-options pl-0">
+                                <button type="button" className="btn-block-option" />
+                                <button type="button" className="btn-block-option" >
+                                    <i className="si si-pin" />
+                                </button>
+                                <button type="button" className="btn-block-option">
+                                    <i className="si si-refresh" />
+                                </button>
+                                <button type="button" className="btn-block-option" />
+                                <button type="button" className="btn-block-option">
+                                    <i className="si si-close" />
+                                </button>
+                            </div>
+                        </div>
+                        <div className="block-content">
+                            <p>Create your own awesome project</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+        </>
+    )
+}
+export default App;
