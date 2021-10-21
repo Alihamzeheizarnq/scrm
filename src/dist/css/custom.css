@@ -380,4 +380,5 @@ h3,h2,a {
 }
 .nav-submenu{
   cursor: pointer;
+  user-select: none;
 }

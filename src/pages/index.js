@@ -1,7 +1,14 @@
-const App = () => {
+import { connect } from "react-redux";
+import { UserFetchAction } from "../state/users/action";
+
+const App = ({ UserFetchAction }) => {
+
     return (
         <>
             <main id="main-container">
+                <button onClick={e => UserFetchAction(1)}>
+                    ali
+                </button>
                 <div className="content">
                     <div className="block">
                         <div className="block-header block-header-default">
@@ -14,7 +21,7 @@ const App = () => {
                                 <button type="button" className="btn-block-option">
                                     <i className="si si-refresh" />
                                 </button>
-                                <button type="button" className="btn-block-option" />
+                                <button type="button" className="btn-block-option bg-primery" />
                                 <button type="button" className="btn-block-option">
                                     <i className="si si-close" />
                                 </button>
@@ -30,4 +37,15 @@ const App = () => {
         </>
     )
 }
-export default App;
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        UserFetchAction: (userId) => dispatch(UserFetchAction(userId)),
+    }
+}
+
+const getStateToProps = (state) => ({
+    users: state.users
+})
+
+export default connect(getStateToProps, mapDispatchToProps)(App);

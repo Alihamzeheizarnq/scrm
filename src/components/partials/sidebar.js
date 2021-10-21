@@ -1,11 +1,26 @@
-import { useEffect, useRef } from "react";
-
 const SideBar = () => {
 
 
 
     const handleSideBar = (e) => {
-        console.log(e)
+        if (e.target.tagName == 'A' || e.target.parentElement.tagName == 'A') {
+            const target = e.target.tagName == 'A' ? e.target : e.target.parentElement;
+            const parent = target.parentElement;
+            parent.classList.contains('open') ? parent.classList.remove('open') : parent.classList.add('open');
+
+            const ul = document.querySelector('#nav-main-sidebar');
+            const index = Array.from(ul.children).indexOf(parent);
+
+
+            let number = 0;
+            for (const iterator of ul.children) {
+                if (number != index) {
+                    iterator.classList.remove('open')
+                }
+                number++;
+            }
+        }
+
     }
     return (
         <>
@@ -42,7 +57,7 @@ const SideBar = () => {
                             </div>
                         </div>
                         <div className="content-side content-side-full">
-                            <ul className="nav-main">
+                            <ul className="nav-main" id="nav-main-sidebar">
                                 <li>
                                     <a className="active" href="#">
                                         <i className="si si-cup" />
@@ -52,32 +67,25 @@ const SideBar = () => {
                                 <li>
                                     <a className="nav-submenu" onClick={handleSideBar}>
                                         <i className="si si-puzzle" />
-                                        <span className="sidebar-mini-hide">پست ها</span>
+                                        <span className="sidebar-mini-hide">کاربران</span>
                                     </a>
                                     <ul>
                                         <li>
-                                            <a href="#">ایجاد پست</a>
+                                            <a href="#">ایجاد کاربر</a>
                                         </li>
                                         <li>
-                                            <a href="#">لیست پست ها</a>
+                                            <a href="#">لیست کاربران</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">دسته بندی </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">شیوه آشنایی </a>
                                         </li>
                                     </ul>
                                 </li>
 
-                                <li>
-                                    <a className="nav-submenu"  onClick={handleSideBar}>
-                                        <i className="si si-puzzle" />
-                                        <span className="sidebar-mini-hide">پست ها</span>
-                                    </a>
-                                    <ul>
-                                        <li>
-                                            <a href="#">ایجاد پست</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">لیست پست ها</a>
-                                        </li>
-                                    </ul>
-                                </li>
+                             
                             </ul>
                         </div>
                     </div>
