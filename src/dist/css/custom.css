@@ -245,7 +245,9 @@ body {
 body,
 .datepicker-plot-area,
 button,
-h3,h2,a {
+h3,
+h2,
+a {
   font-family: IRANSansfanum !important;
 }
 
@@ -378,7 +380,41 @@ h3,h2,a {
 .autocomplete-suggestion {
   text-align: right;
 }
-.nav-submenu{
+.nav-submenu {
   cursor: pointer;
   user-select: none;
+}
+
+.side-left-modal {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  width: 400px;
+  height: 100%;
+  background-color: #fff;
+  transition: 500ms;
+  border-right: #eee 1px solid;
+}
+.side-left-modal-hide {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  width: 0px;
+  height: 100%;
+  transition: 500ms;
+  background-color: #eee;
+}
+input,
+textarea {
+  font-family: IRANSansfanum !important;
+}
+#page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+#main-container {
+  flex-grow: 1;
 }

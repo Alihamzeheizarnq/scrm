@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 const SideBar = () => {
 
 
@@ -51,7 +53,7 @@ const SideBar = () => {
                                 <div className="content-header-item">
                                     <a className="link-effect font-w700" href="#">
                                         <i className="si si-fire text-primary" />
-                                        <span className="font-size-xl text-dual-primary-dark">node</span><span className="font-size-xl text-primary">panel</span>
+                                        <span className="font-size-xl text-dual-primary-dark"> </span><span className="font-size-xl text-primary">ثریا </span>
                                     </a>
                                 </div>
                             </div>
@@ -71,21 +73,29 @@ const SideBar = () => {
                                     </a>
                                     <ul>
                                         <li>
-                                            <a href="#">ایجاد کاربر</a>
+                                            <Link href="/users/create">
+                                                <a>ایجاد کاربر</a>
+                                            </Link>
                                         </li>
                                         <li>
-                                            <a href="#">لیست کاربران</a>
+                                            <Link href="/users">
+                                                <a>لیست کاربران</a>
+                                            </Link>
                                         </li>
                                         <li>
-                                            <a href="#">دسته بندی </a>
+                                            <Link href="/users/category">
+                                                <a>دسته بندی </a>
+                                            </Link>
                                         </li>
                                         <li>
-                                            <a href="#">شیوه آشنایی </a>
+                                            <Link href="/users/familiarity">
+                                                <a>شیوه آشنایی</a>
+                                            </Link>
                                         </li>
                                     </ul>
                                 </li>
 
-                             
+
                             </ul>
                         </div>
                     </div>
