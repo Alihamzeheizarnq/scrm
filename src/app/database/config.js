@@ -8,12 +8,16 @@ module.exports = {
   development: {
     username: 'root',
     password: '',
-    database: 'crm-soraya',
+    database: process.env.PROD_DB_NAME,
     host: '127.0.0.1',
     port: 3306,
     dialect: 'mysql',
-    dialectOptions: {
-      bigNumberStrings: true
+    define: {
+      bigNumberStrings: true,
+      charset : 'utf8',
+      collation : 'utf8_unicode_ci',
+      collate: 'utf8_unicode_ci',
+
     }
   },
   test: {
@@ -23,6 +27,7 @@ module.exports = {
     host: '127.0.0.1',
     port: 3306,
     dialect: 'mysql',
+
     dialectOptions: {
       bigNumberStrings: true
     }
@@ -36,6 +41,9 @@ module.exports = {
     dialect: 'mysql',
     dialectOptions: {
       bigNumberStrings: true,
+      charset : 'utf8',
+      collation : 'utf8_unicode_ci',
+      collate: 'utf8_unicode_ci',
       ssl: {
         // ca: fs.readFileSync(__dirname + '/mysql-ca-master.crt')
       }

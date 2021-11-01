@@ -11,7 +11,7 @@
   "dependencies": {
     "@hookform/resolvers": "^2.8.2",
     "axios": "^0.23.0",
-    "body-parser": "^1.19.0",
+    "body-p02arser": "^1.19.0",
     "cross-env": "^7.0.3",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",

@@ -29,14 +29,10 @@ const CategoryCrate = ({ show, hide, CategoryCreateRequest, created, EnableCreat
 
 
     useEffect(() => {
-        if (created) {
-            hide(false);
-            EnableCreate();
-
-            setValue('title', '');
-            setValue('body', '');
-        }
-    }, [created])
+        setValue('title', '');
+        setValue('body', '');
+        reset();
+    }, [show])
 
 
 
@@ -49,8 +45,7 @@ const CategoryCrate = ({ show, hide, CategoryCreateRequest, created, EnableCreat
                     <div className="block-header block-header-default">
                         <h3 className="block-title">ایجاد دسته بندی جدید</h3>
                         <div className="block-options">
-
-                            <button onClick={e => { hide(false); reset(); }} type="button" className="btn-block-option btn btn-circle btn-dual-secondary">
+                            <button onClick={e => { hide(false);  }} type="button" className="btn-block-option btn btn-circle btn-dual-secondary">
                                 <i className="fa fa-times text-danger" />
                             </button>
                         </div>

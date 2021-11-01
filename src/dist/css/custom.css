@@ -391,6 +391,7 @@ a {
   bottom: 0;
   top: 0;
   width: 400px;
+  z-index: 9;
   height: 100%;
   background-color: #fff;
   transition: 500ms;
@@ -417,4 +418,37 @@ textarea {
 }
 #main-container {
   flex-grow: 1;
+}
+.nav-custom.open {
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+}
+.nav-main-item.open > .nav-main-link-submenu {
+  background-color: #f5faff;
+}
+.nav-main-custom .nav-main-link:hover {
+  padding-right: 10px !important;
+}
+.nav-main-custom .nav-active {
+  padding-right: 10px !important;
+}
+.nav-main-custom .nav-main-link {
+  transition: all 0.35s ease !important;
+}
+.nav-custom.open .nav-main-link-submenu {
+  border-bottom: 1px solid #eee;
+}
+
+.nav-active .nav-main-link-name {
+  color: black;
+}
+.nav-active .nav-main-link-icon {
+  color: black;
+}
+
+#page-container.main-content-boxed > #main-container .content,
+#page-container.main-content-boxed > #page-footer .content,
+#page-container.main-content-boxed > #page-header .content,
+#page-container.main-content-boxed > #page-header .content-header {
+  max-width: unset !important;
 }

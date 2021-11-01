@@ -1,5 +1,4 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
-import { putWait, withCallback } from 'redux-saga-callback';
 
 import axios from 'axios';
 import { CategoryCreateError, CategoryCreateSuccess } from './action';
