@@ -41,16 +41,16 @@ const CategoryCrate = ({ show, hide, CategoryCreateRequest, created, EnableCreat
             <div id="side-overlay " className={`${show ? 'side-left-modal' : 'side-left-modal-hide'}`}>
 
 
-                <div className="block h-100">
+                <div className="block h-100 pattern">
                     <div className="block-header block-header-default">
                         <h3 className="block-title">ایجاد دسته بندی جدید</h3>
                         <div className="block-options">
-                            <button onClick={e => { hide(false);  }} type="button" className="btn-block-option btn btn-circle btn-dual-secondary">
+                            <button onClick={e => { hide(false); }} type="button" className="btn-block-option btn btn-circle btn-dual-secondary">
                                 <i className="fa fa-times text-danger" />
                             </button>
                         </div>
                     </div>
-                    <div className="block-content">
+                    <div className="block-content ">
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="form-group">
                                 <label htmlFor="example-nf-email">عنوان </label>

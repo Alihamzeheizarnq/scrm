@@ -452,3 +452,7 @@ textarea {
 #page-container.main-content-boxed > #page-header .content-header {
   max-width: unset !important;
 }
+.pattern {
+  background: url(../image/ali-pattern.png);
+  background-size: 180px;
+}
