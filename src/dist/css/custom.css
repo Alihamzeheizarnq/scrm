@@ -420,7 +420,7 @@ textarea {
   flex-grow: 1;
 }
 .nav-custom.open {
-  border: 1px solid #e5e5e5;
+  border: 0px 1px solid #f5f1f1;
   border-radius: 3px;
 }
 .nav-main-item.open > .nav-main-link-submenu {
@@ -434,9 +434,6 @@ textarea {
 }
 .nav-main-custom .nav-main-link {
   transition: all 0.35s ease !important;
-}
-.nav-custom.open .nav-main-link-submenu {
-  border-bottom: 1px solid #eee;
 }
 
 .nav-active .nav-main-link-name {

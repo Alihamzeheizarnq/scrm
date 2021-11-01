@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps }) {
                     className="sidebar-o sidebar-r
                         side-scroll
                         page-header-modern
-                        main-content-boxed  rtl-support">
+                        main-content-boxed    rtl-support">
 
                     <Aside />
 

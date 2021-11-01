@@ -109,6 +109,24 @@ const SideBar = () => {
                                                     </ul>
                                                 </li>
 
+                                                <li className={`nav-main-item nav-custom `}>
+                                                    <a className="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href={true} onClick={handleSideBar}>
+                                                        <i className="nav-main-link-icon fa fa-user" />
+                                                        <span className="nav-main-link-name">مدیریت کاربران</span>
+                                                    </a>
+
+                                                    <ul className="nav-main-submenu">
+                                                        <li className="nav-main-item nav-main-custom ">
+                                                            <ActiveLink activeClassName="nav-active" href="/users/create" >
+                                                                <a className="nav-main-link">
+                                                                    <i className="nav-main-link-icon fa fa-2x fa-chevron-left" />
+                                                                    <span className="nav-main-link-name">ایجاد کاربر</span>
+                                                                </a>
+                                                            </ActiveLink>
+                                                        </li>
+
+                                                    </ul>
+                                                </li>
                                             </ul>
                                         </div>
                                         {/* END Side Navigation */}
