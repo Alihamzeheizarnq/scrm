@@ -402,8 +402,7 @@ a {
   left: 0;
   bottom: 0;
   top: 0;
-  width: 0px;
-  height: 100%;
+  transform: translateX(-400px);
   transition: 500ms;
   background-color: #eee;
 }
@@ -452,4 +451,8 @@ textarea {
 .pattern {
   background: url(../image/ali-pattern.png);
   background-size: 180px;
+}
+.Toastify *{
+  font-family: IRANSansfanum !important;
+
 }

@@ -1,15 +1,18 @@
 
 import Head from "next/head";
 import { Provider } from "react-redux";
+import { ToastContainer } from "react-toastify";
 import Aside from "../components/partials/aside";
 import Footer from "../components/partials/footer";
 import Header from "../components/partials/Header";
 import Meta from "../components/partials/meta";
 import SideBar from "../components/partials/sidebar";
+import store from "../state/store";
 
 import '../dist/css/codebase.min.css';
 import '../dist/css/custom.css';
-import store from "../state/store";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function MyApp({ Component, pageProps }) {
 
@@ -35,6 +38,18 @@ function MyApp({ Component, pageProps }) {
                     <Component {...pageProps} />
 
                     <Footer />
+                    <ToastContainer
+                        position="bottom-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={true}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                        theme="colored"
+                    />
                 </div>
             </Provider>
         </>

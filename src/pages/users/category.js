@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import CategoryCrate from "../../components/users/category";
-import { CategorySelectRequest } from "../../state/category/select/action";
+import { CategorySelectRequest, ShowCategoryModal } from "../../state/category/action";
 
 const App = (props) => {
 
@@ -9,25 +9,17 @@ const App = (props) => {
 
     useEffect(() => {
         props.CategorySelectRequest();
-    }, [])
-    const [craeteModal, setCreateModal] = useState(false);
-
-    const hide = (bool) => {
-        setCreateModal(bool);
-    }
-
-
-
-
+    },[])
+   
     return (
         <>
             <main id="main-container">
                 <div className="bg-body-light">
                     <div className="content">
                         <div className="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-                            <button type="button" class="btn btn-hero btn-success me-1 mb-3" onClick={e=> setCreateModal(true)}>
+                            <button type="button" class="btn btn-hero btn-success me-1 mb-3" onClick={e => props.ShowModal(true)}>
                                 <i class="fa fa-fw fa-plus me-1"></i> ایجاد دسته بندی
-                            </button>0
+                            </button>
                             <nav className="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                                 <ol className="breadcrumb breadcrumb-alt">
                                     <li className="breadcrumb-item">
@@ -70,13 +62,14 @@ const App = (props) => {
                 </div>
             </main>
 
-            <CategoryCrate show={craeteModal} hide={hide} />
+            <CategoryCrate />
         </>
     )
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        ShowModal: (bool) => dispatch(ShowCategoryModal(bool)),
         CategorySelectRequest: () => dispatch(CategorySelectRequest()),
     }
 }

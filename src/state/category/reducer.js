@@ -1,17 +1,15 @@
-import { CATEGORY_CREATE_ERROR, CATEGORY_CREATE_REQUEST, CATEGORY_CREATE_SUCCESS_REQUEST } from "./action-type";
-import { CATEGORY_SELECT_ERROR, CATEGORY_SELECT_REQUEST, CATEGORY_SELECT_SUCCESS_REQUEST } from "./select/action-type";
+import { CATEGORY_CREATE_ERROR, CATEGORY_CREATE_REQUEST, CATEGORY_CREATE_SUCCESS_REQUEST, CATEGORY_SELECT_ERROR, CATEGORY_SELECT_REQUEST, CATEGORY_SELECT_SUCCESS_REQUEST, SHOW_CATEGORY_MODAL } from "./action-type";
 
 const initState = {
     data: null,
     category: [],
     errro: null,
-    created: null
+    showModel: false
 };
 
 
 
 const reducer = (state = initState, action) => {
-
     switch (action.type) {
         case CATEGORY_CREATE_REQUEST:
             return {
@@ -19,7 +17,6 @@ const reducer = (state = initState, action) => {
                 data: action.payload,
                 category: state.category,
                 error: null,
-                created: null
             }
 
         case CATEGORY_CREATE_SUCCESS_REQUEST:
@@ -28,7 +25,6 @@ const reducer = (state = initState, action) => {
                 category: [...state.category, action.payload],
                 data: null,
                 error: null,
-                created: true
             }
         case CATEGORY_CREATE_ERROR:
 
@@ -36,7 +32,6 @@ const reducer = (state = initState, action) => {
                 data: null,
                 category: state.category,
                 error: action.payload,
-                created: null
             }
 
 
@@ -46,7 +41,6 @@ const reducer = (state = initState, action) => {
                 data: null,
                 category: action.payload,
                 error: [],
-                created: null
             }
 
         case CATEGORY_SELECT_ERROR:
@@ -60,11 +54,11 @@ const reducer = (state = initState, action) => {
 
 
 
-        case 'disbleCreated':
+        case SHOW_CATEGORY_MODAL:
 
             return {
                 ...state,
-                created: false
+                showModel: action.payload
             }
         default:
             return state;

@@ -6,9 +6,7 @@ const App = ({ UserFetchAction }) => {
     return (
         <>
             <main id="main-container">
-                <button onClick={e => UserFetchAction(1)}>
-                    ali
-                </button>
+
                 <div className="content">
                     <div className="block">
                         <div className="block-header block-header-default">

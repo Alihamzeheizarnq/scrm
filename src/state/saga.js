@@ -1,12 +1,10 @@
 import { all } from "@redux-saga/core/effects";
-import categoryCreateSaga from "./category/saga";
-import { categorySelectSaga } from "./category/select/saga";
+import categorySaga from "./category/saga";
 import userSaga from "./users/saga";
 
 export default function* rootSaga() {
     yield all([
         userSaga(),
-        categoryCreateSaga(),
-        categorySelectSaga(),
+        categorySaga(),
     ]);
 }

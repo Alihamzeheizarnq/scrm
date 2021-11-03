@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
-import { CategoryCreateRequest } from "../../state/category/action";
+import { CategoryCreateRequest, ShowCategoryModal } from "../../state/category/action";
 import { useEffect } from "react";
 
 
@@ -16,7 +16,7 @@ let schema = yup.object().shape({
 
 });
 
-const CategoryCrate = ({ show, hide, CategoryCreateRequest, created, EnableCreate }) => {
+const CategoryCrate = ({  CategoryCreateRequest, show_modal_category , ShowModal }) => {
     const { register, setValue, handleSubmit, reset, formState: { errors }
     } = useForm({
         mode: "onChange",
@@ -32,20 +32,20 @@ const CategoryCrate = ({ show, hide, CategoryCreateRequest, created, EnableCreat
         setValue('title', '');
         setValue('body', '');
         reset();
-    }, [show])
+    }, [show_modal_category])
 
 
 
     return (
         <>
-            <div id="side-overlay " className={`${show ? 'side-left-modal' : 'side-left-modal-hide'}`}>
+            <div id="side-overlay " className={`${show_modal_category ? 'side-left-modal' : 'side-left-modal-hide'}`}>
 
 
                 <div className="block h-100 pattern">
                     <div className="block-header block-header-default">
                         <h3 className="block-title">ایجاد دسته بندی جدید</h3>
                         <div className="block-options">
-                            <button onClick={e => { hide(false); }} type="button" className="btn-block-option btn btn-circle btn-dual-secondary">
+                            <button onClick={e => { ShowModal(false); }} type="button" className="btn-block-option btn btn-circle btn-dual-secondary">
                                 <i className="fa fa-times text-danger" />
                             </button>
                         </div>
@@ -95,13 +95,13 @@ const CategoryCrate = ({ show, hide, CategoryCreateRequest, created, EnableCreat
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        ShowModal: (bool) => dispatch(ShowCategoryModal(bool)),
         CategoryCreateRequest: (data) => dispatch(CategoryCreateRequest(data)),
-        EnableCreate: () => dispatch({ type: 'disbleCreated' }),
     }
 }
 
 const getStateToProps = (state) => ({
-    created: state.category.created
+    show_modal_category : state.category.showModel
 })
 
 
