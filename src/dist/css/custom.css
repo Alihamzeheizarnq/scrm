@@ -452,7 +452,10 @@ textarea {
   background: url(../image/ali-pattern.png);
   background-size: 180px;
 }
-.Toastify *{
+.Toastify * {
   font-family: IRANSansfanum !important;
+}
 
+#main-container {
+  min-height: 90vh;
 }
