@@ -1,22 +1,22 @@
+import { useEffect } from "react";
 import { connect } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
 import { CategoryCreateRequest, ShowCategoryModal } from "../../state/category/action";
-import { useEffect } from "react";
 
 
 
 
 
 let schema = yup.object().shape({
-    title: yup.string().required('پر کردن این فیلد الزامی میباشد'),
-    body: yup.string().required('پر کردن این فیلد الزامی میباشد'),
+    title: yup.string().nullable(),
+    body: yup.string().nullable(),
 
 });
 
-const CategoryCrate = ({  CategoryCreateRequest, show_modal_category , ShowModal }) => {
+const CategoryCrate = ({ CategoryCreateRequest, show_modal_category, ShowModal }) => {
     const { register, setValue, handleSubmit, reset, formState: { errors }
     } = useForm({
         mode: "onChange",
@@ -101,7 +101,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const getStateToProps = (state) => ({
-    show_modal_category : state.category.showModel
+    show_modal_category: state.category.showModel
 })
 
 

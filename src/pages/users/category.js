@@ -9,8 +9,8 @@ const App = (props) => {
 
     useEffect(() => {
         props.CategorySelectRequest();
-    },[])
-   
+    }, [])
+
     return (
         <>
             <main id="main-container">

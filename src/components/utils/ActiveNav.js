@@ -10,7 +10,7 @@ const OpenMenu = (route) => {
         const hasRouter = route.find(item => item == asPath);
 
         if (hasRouter) {
-                setActivNav('open');
+            setActivNav('open');
         }
     }, [])
 

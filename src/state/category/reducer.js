@@ -13,7 +13,7 @@ const reducer = (state = initState, action) => {
     switch (action.type) {
         case CATEGORY_CREATE_REQUEST:
             return {
-
+                ...state,
                 data: action.payload,
                 category: state.category,
                 error: null,
@@ -29,6 +29,7 @@ const reducer = (state = initState, action) => {
         case CATEGORY_CREATE_ERROR:
 
             return {
+                ...state,
                 data: null,
                 category: state.category,
                 error: action.payload,
@@ -49,7 +50,6 @@ const reducer = (state = initState, action) => {
                 data: null,
                 category: [],
                 error: action.payload,
-                created: null
             }
 
 
@@ -58,7 +58,7 @@ const reducer = (state = initState, action) => {
 
             return {
                 ...state,
-                showModel: action.payload
+                showModel: action
             }
         default:
             return state;

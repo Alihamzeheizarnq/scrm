@@ -1,9 +1,9 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
-
+import { toast } from 'react-toastify';
 import axios from 'axios';
+
 import { CategoryCreateError, CategoryCreateSuccess, CategorySelectError, CategorySelectSuccess, ShowCategoryModal } from './action';
 import { CATEGORY_CREATE_REQUEST, CATEGORY_SELECT_REQUEST } from './action-type';
-import { toast } from 'react-toastify';
 
 //create saga
 function* createCategory(action) {
@@ -21,10 +21,13 @@ function* createCategory(action) {
         yield toast.success('دسته بندی با موفقیت ثبت گردید');
 
     } catch (e) {
+        console.log(e.response);
         yield put(CategoryCreateError(e));
     }
 }
-
+const onError = (err) => {
+    console.log(err)
+  }
 
 function* selectCategory() {
 

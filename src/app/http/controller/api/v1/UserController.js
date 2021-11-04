@@ -5,8 +5,11 @@ const Controller = require('../../controller');
 
 module.exports = new class UserController extends Controller {
 
-
-    async category(req, res) {
+    /**
+     * @method POST
+     * @validate CategoryRequest
+     */
+    async category_store(req, res) {
 
         const data = await CategoryRequest(req, res);
 
@@ -23,8 +26,11 @@ module.exports = new class UserController extends Controller {
 
     }
 
-
-    async index(req, res) {
+    /**
+     * @method GET 
+     * @return object category
+     */
+    async category(req, res) {
 
 
 

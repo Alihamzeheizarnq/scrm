@@ -4,8 +4,8 @@ import createSagaMiddleware from 'redux-saga'
 import rootReducer from './reducer';
 import rootSaga from './saga';
 
+const sagaMiddleware = createSagaMiddleware()
 
-const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
     rootReducer,
     typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ && process.env.NODE_ENV !== 'production' ?
@@ -15,6 +15,7 @@ const store = createStore(
         ) :
         applyMiddleware(sagaMiddleware),
 );
+
 
 sagaMiddleware.run(rootSaga);
 
