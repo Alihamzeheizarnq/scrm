@@ -11,8 +11,8 @@ import { CategoryCreateRequest, ShowCategoryModal } from "../../state/category/a
 
 
 let schema = yup.object().shape({
-    title: yup.string().nullable(),
-    body: yup.string().nullable(),
+    title: yup.string().required('پر کردن این فیلد الزامی میباشد'),
+    body: yup.string().required('پر کردن این فیلد الزامی میباشد'),
 
 });
 

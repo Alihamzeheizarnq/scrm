@@ -11,7 +11,7 @@
   "dependencies": {
     "@hookform/resolvers": "^2.8.2",
     "axios": "^0.23.0",
-    "body-p02arser": "^1.19.0",
+    "body-parser": "^1.19.0",
     "cross-env": "^7.0.3",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
@@ -27,7 +27,6 @@
     "redux-saga": "^1.1.3",
     "redux-saga-callback": "^1.1.0",
     "sequelize": "^6.7.0",
-    "sequelize-cli": "^6.2.0",
     "yup": "^0.32.11"
   }
 }

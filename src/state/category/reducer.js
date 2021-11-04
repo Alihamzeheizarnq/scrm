@@ -58,7 +58,7 @@ const reducer = (state = initState, action) => {
 
             return {
                 ...state,
-                showModel: action
+                showModel: action.payload
             }
         default:
             return state;

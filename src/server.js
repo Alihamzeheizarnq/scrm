@@ -47,7 +47,7 @@ app.prepare().then(() => {
             process.exit(2);
         });
 
-    app.listen(3000, () => {
+    app.listen(3001, () => {
         console.log(`running serevr localhost:3000 ${process.env.NODE_ENV} mode....`);
     });
 
