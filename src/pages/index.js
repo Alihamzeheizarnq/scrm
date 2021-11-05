@@ -35,6 +35,15 @@ const App = ({ UserFetchAction }) => {
         </>
     )
 }
+export async function getServerSideProps({ req }) {
+    if (!req.auth) {
+        return req.redirectTo('/login');
+    }
+
+    return {
+        props: {},
+    }
+}
 
 const mapDispatchToProps = (dispatch) => {
     return {

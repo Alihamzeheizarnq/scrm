@@ -7,7 +7,6 @@ const session = require('express-session')
 
 
 const db = require('./app/models');
-const { redirect } = require('next/dist/server/api-utils');
 
 
 dotEnv.config({ path: path.resolve('..', '.env') });
@@ -37,14 +36,19 @@ app.prepare().then(() => {
 
 
     app.use((req, res, next) => {
-        if (req.session.user) {
 
-            req.auth = req.session.user;
+        req.redirectTo = (route) => {
+            return {
+                redirect: {
+                    destination: route,
+                    permanent: false,
+                },
+            }
         }
 
-
-
-
+        if (req.session.user) {
+            req.auth = req.session.user;
+        }
 
         next();
     });

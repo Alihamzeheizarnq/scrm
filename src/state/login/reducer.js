@@ -28,6 +28,7 @@ const reducer = (state = initState, action) => {
                 user: action.payload,
                 errro: null,
                 showLoding: false
+
             }
         case LOGIN_ERROR_REQUEST:
 

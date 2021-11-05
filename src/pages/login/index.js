@@ -1,6 +1,7 @@
 import * as yup from "yup";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useRouter } from "next/router";
 
 import bg from './../../dist/image/photo17@2x.jpg'
 import { useEffect } from "react";
@@ -13,26 +14,19 @@ let schema = yup.object().shape({
 
 });
 const Login = ({ LoginRequest, showLoding }) => {
+    const router = useRouter();
 
 
-
-    const { register, setValue, setError, handleSubmit, reset, formState: { errors }
+    const { register, setError, handleSubmit, formState: { errors }
     } = useForm({
         mode: "onChange",
         resolver: yupResolver(schema)
     });
 
     const onSubmit = (data) => {
-        LoginRequest(data);
+        LoginRequest({ data, router });
     };
 
-
-    useEffect(() => {
-        setError("username", {
-            type: "manual",
-            message: "Dont Forget Your Username Should Be Cool!",
-        });
-    }, [])
     return (
         <>
             <div id="page-container">
@@ -43,7 +37,7 @@ const Login = ({ LoginRequest, showLoding }) => {
                                 <div className="p-3 w-100">
                                     <div className="mb-3 text-center">
                                         <a className="link-fx fw-bold fs-1" href="index.html">
-                                            {/* <span className="text-dark">ثر</span><span className="text-primary">یا</span> */}
+                                            <span className="text-dark">ثر</span><span className="text-primary">یا</span>
                                         </a>
                                         <p className="text-uppercase fw-bold fs-sm text-muted">صفحه ورود</p>
                                     </div>
@@ -99,9 +93,9 @@ const Login = ({ LoginRequest, showLoding }) => {
                             </div>
                             <div className="hero-static col-md-6 d-none d-md-flex align-items-md-center justify-content-md-center text-md-center">
                                 <div className="p-3">
-                                    {/* <p className="display-4 fw-bold text-white mb-3">
+                                    <p className="display-4 fw-bold text-white mb-3">
                                         سامانه مدیریت مشتری
-                                    </p> */}
+                                    </p>
 
                                 </div>
                             </div>
@@ -116,6 +110,14 @@ const Login = ({ LoginRequest, showLoding }) => {
     )
 }
 
+export async function getServerSideProps({ req }) {
+    if (req.auth) {
+        return req.redirectTo('/');
+    }
+    return {
+        props: {},
+    }
+}
 
 
 const mapDispatchToProps = (dispatch) => {

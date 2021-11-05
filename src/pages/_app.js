@@ -20,9 +20,6 @@ function MyApp({ Component, pageProps }) {
     const router = useRouter();
 
 
-
-
-
     return (
         <>
             <Provider store={store}>

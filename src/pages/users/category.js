@@ -67,21 +67,12 @@ const App = (props) => {
     )
 }
 export async function getServerSideProps({ req }) {
-
-    const user = req.session.user
-
-    if (!user) {
-        return {
-            redirect: {
-                destination: '/login',
-                permanent: false,
-            },
-        }
+    if (!req.auth) {
+        return req.redirectTo('/login');
     }
 
-
     return {
-        props: {}, // will be passed to the page component as props
+        props: {},
     }
 }
 

@@ -11,15 +11,18 @@ function* Login(action) {
     const args = {
         method: "POST",
         url: '/v1/login',
-        data: action.payload,
+        data: action.payload.data,
         withCredentials: true
 
     }
     try {
         const auth = yield call(axios, args);
         yield put(LodingSuccessRequest(auth.data.user));
-        yield put(ShowLodingLogin(false));
+        put(ShowLodingLogin(false));
         yield toast.success('ورود موفق !');
+        yield setTimeout(() => {
+            action.payload.router.push('/');
+        }, 2000)
 
     } catch (e) {
 

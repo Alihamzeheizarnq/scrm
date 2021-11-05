@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
 import { CategoryCreateRequest, ShowCategoryModal } from "../../state/category/action";
-
+import { useRouter } from "next/router";
 
 
 
@@ -17,6 +17,11 @@ let schema = yup.object().shape({
 });
 
 const CategoryCrate = ({ CategoryCreateRequest, show_modal_category, ShowModal }) => {
+
+
+    const router = useRouter();
+
+
     const { register, setValue, handleSubmit, reset, formState: { errors }
     } = useForm({
         mode: "onChange",
@@ -24,7 +29,7 @@ const CategoryCrate = ({ CategoryCreateRequest, show_modal_category, ShowModal }
     });
     const onSubmit = (data) => {
         data.type = 'user';
-        CategoryCreateRequest(data);
+        CategoryCreateRequest({ data, router });
     };
 
 

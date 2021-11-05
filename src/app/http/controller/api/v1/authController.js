@@ -33,4 +33,13 @@ module.exports = new class authController extends Controller {
 
     }
 
+    async check_auth(req, res) {
+        if (req.session.user) {
+            res.status(200).json({ status: true })
+        } else {
+            res.status(401).json({ status: false })
+
+        }
+    }
+
 }

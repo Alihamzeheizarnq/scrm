@@ -6,7 +6,7 @@ import LoginReducer from './login/reducer';
 const rootReducer = combineReducers({
     users: UserReducer,
     category: CategoryReducer,
-    auth: LoginReducer
+    auth: LoginReducer,
 });
 
 
