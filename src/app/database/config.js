@@ -14,8 +14,8 @@ module.exports = {
     dialect: 'mysql',
     define: {
       bigNumberStrings: true,
-      charset : 'utf8',
-      collation : 'utf8_unicode_ci',
+      charset: 'utf8',
+      collation: 'utf8_unicode_ci',
       collate: 'utf8_unicode_ci',
 
     }
@@ -33,16 +33,16 @@ module.exports = {
     }
   },
   production: {
-    username: process.env.PROD_DB_USERNAME,
-    password: process.env.PROD_DB_PASSWORD,
+    username: 'root',
+    password: '',
     database: process.env.PROD_DB_NAME,
-    host: process.env.PROD_DB_HOSTNAME,
-    port: process.env.PROD_DB_PORT,
+    host: '127.0.0.1',
+    port: 3306,
     dialect: 'mysql',
-    dialectOptions: {
+    define: {
       bigNumberStrings: true,
-      charset : 'utf8',
-      collation : 'utf8_unicode_ci',
+      charset: 'utf8',
+      collation: 'utf8_unicode_ci',
       collate: 'utf8_unicode_ci',
       ssl: {
         // ca: fs.readFileSync(__dirname + '/mysql-ca-master.crt')
