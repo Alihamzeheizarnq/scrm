@@ -21,6 +21,8 @@ function MyApp({ Component, pageProps }) {
 
 
 
+
+
     return (
         <>
             <Provider store={store}>
@@ -33,6 +35,18 @@ function MyApp({ Component, pageProps }) {
                     router.asPath == '/login' ? (
                         <>
                             <Component {...pageProps} />
+                            <ToastContainer
+                                position="bottom-right"
+                                autoClose={5000}
+                                hideProgressBar={false}
+                                newestOnTop={false}
+                                closeOnClick
+                                rtl={true}
+                                pauseOnFocusLoss
+                                draggable
+                                pauseOnHover
+                                theme="colored"
+                            />
                         </>
                     ) : (
                         <>

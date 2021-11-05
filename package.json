@@ -11,10 +11,12 @@
   "dependencies": {
     "@hookform/resolvers": "^2.8.2",
     "axios": "^0.23.0",
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "cross-env": "^7.0.3",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-session": "^1.17.2",
     "morgan": "^1.10.0",
     "mysql2": "^2.3.2",
     "next": "11.1.2",
@@ -28,5 +30,8 @@
     "redux-saga-callback": "^1.1.0",
     "sequelize": "^6.7.0",
     "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "typescript": "^4.4.4"
   }
 }

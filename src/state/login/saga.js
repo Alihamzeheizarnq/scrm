@@ -12,15 +12,21 @@ function* Login(action) {
         method: "POST",
         url: '/v1/login',
         data: action.payload,
+        withCredentials: true
 
     }
     try {
-        const category = yield call(axios, args);
-        yield put(LodingSuccessRequest(category.data.user));
+        const auth = yield call(axios, args);
+        yield put(LodingSuccessRequest(auth.data.user));
         yield put(ShowLodingLogin(false));
         yield toast.success('ورود موفق !');
 
     } catch (e) {
+
+        if (e.response.status == 401) {
+
+            yield toast.error(e.response.data.errors.message);
+        }
         yield put(LoginErrorRequest(e));
     }
 }

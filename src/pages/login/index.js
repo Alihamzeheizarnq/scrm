@@ -4,13 +4,15 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import bg from './../../dist/image/photo17@2x.jpg'
 import { useEffect } from "react";
+import { connect } from "react-redux";
+import { LoginRequest } from "../../state/login/action";
 
 let schema = yup.object().shape({
     username: yup.string().required('پر کردن این فیلد الزامی میباشد'),
     password: yup.string().required('پر کردن این فیلد الزامی میباشد'),
 
 });
-const Login = () => {
+const Login = ({ LoginRequest, showLoding }) => {
 
 
 
@@ -21,7 +23,7 @@ const Login = () => {
     });
 
     const onSubmit = (data) => {
-        console.log(data)
+        LoginRequest(data);
     };
 
 
@@ -41,7 +43,7 @@ const Login = () => {
                                 <div className="p-3 w-100">
                                     <div className="mb-3 text-center">
                                         <a className="link-fx fw-bold fs-1" href="index.html">
-                                            <span className="text-dark">ثر</span><span className="text-primary">یا</span>
+                                            {/* <span className="text-dark">ثر</span><span className="text-primary">یا</span> */}
                                         </a>
                                         <p className="text-uppercase fw-bold fs-sm text-muted">صفحه ورود</p>
                                     </div>
@@ -75,13 +77,20 @@ const Login = () => {
                                                     </div>
                                                 </div>
                                                 <div className="mb-4">
-                                                    <button type="submit" className="btn w-100 btn-lg btn-hero btn-primary">
-                                                        <i className="fa fa-fw fa-sign-in-alt opacity-50 me-1" /> ورود
-                                                    </button>
-                                                    <button type="submit" className="btn w-100 btn-lg btn-hero btn-primary">
-                                                        <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" />
-                                                        صبر کنید ...
-                                                    </button>
+                                                    {
+                                                        showLoding ? (
+                                                            <button type="submit" className="btn w-100 btn-lg btn-hero btn-primary">
+                                                                <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" />
+                                                                صبر کنید ...
+                                                            </button>
+                                                        ) : (
+                                                            <button type="submit" className="btn w-100 btn-lg btn-hero btn-primary">
+                                                                <i className="fa fa-fw fa-sign-in-alt opacity-50 me-1" /> ورود
+                                                            </button>
+                                                        )
+                                                    }
+
+
                                                 </div>
                                             </form>
                                         </div>
@@ -90,9 +99,9 @@ const Login = () => {
                             </div>
                             <div className="hero-static col-md-6 d-none d-md-flex align-items-md-center justify-content-md-center text-md-center">
                                 <div className="p-3">
-                                    <p className="display-4 fw-bold text-white mb-3">
+                                    {/* <p className="display-4 fw-bold text-white mb-3">
                                         سامانه مدیریت مشتری
-                                    </p>
+                                    </p> */}
 
                                 </div>
                             </div>
@@ -108,4 +117,16 @@ const Login = () => {
 }
 
 
-export default Login;
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        LoginRequest: (data) => dispatch(LoginRequest(data)),
+    }
+}
+
+const getStateToProps = (state) => ({
+    showLoding: state.auth.showLoding,
+})
+
+
+export default connect(getStateToProps, mapDispatchToProps)(Login);

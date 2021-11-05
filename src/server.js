@@ -3,8 +3,11 @@ const path = require('path');
 const next = require('next')
 const dotEnv = require('dotenv');
 const bodyParser = require('body-parser');
+const session = require('express-session')
+
 
 const db = require('./app/models');
+const { redirect } = require('next/dist/server/api-utils');
 
 
 dotEnv.config({ path: path.resolve('..', '.env') });
@@ -23,11 +26,27 @@ app.prepare().then(() => {
     app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 
+    app.use(session({
+        secret: process.env.SECRET,
+        resave: false,
+        saveUninitialized: true,
+        cookie: { maxAge: new Date(Date.now() + 86400000) },
+    }))
+
     app.use(require('./app/routes/api'));
 
 
-    app.get('/a', (req, res) => {
-        res.send('ali');
+    app.use((req, res, next) => {
+        if (req.session.user) {
+
+            req.auth = req.session.user;
+        }
+
+
+
+
+
+        next();
     });
 
     app.get('*', (req, res) => {
