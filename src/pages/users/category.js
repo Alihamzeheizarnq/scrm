@@ -84,7 +84,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const getStateToProps = (state) => ({
-    category: state.category.category.filter(item => item.type == 'user'),
+    category: state.category.category,
     created: state.category.created
 })
 
