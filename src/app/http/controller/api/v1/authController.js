@@ -14,7 +14,7 @@ module.exports = new class authController extends Controller {
 
 
 
-        const user = await this.model.User.findOne({ email: data.email });
+        const user = await this.model.User.findOne({ where: { email: data.username } });
 
 
         if (user) {

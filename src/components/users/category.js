@@ -86,7 +86,7 @@ const CategoryCrate = ({ CategoryCreateRequest, show_modal_category, ShowModal }
                             </div>
                             <div>
 
-                                <button type="submit" className="btn btn-square btn-outline-success min-width-125 mb-10">ایجاد</button>
+                                <button type="submit" className="btn btn-square btn-outline-success min-width-125 my-2">ایجاد</button>
                             </div>
                         </form>
                     </div>

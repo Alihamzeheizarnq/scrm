@@ -8,7 +8,6 @@ const SideBar = () => {
 
     const handleSideBar = (e) => {
         if (e.target.tagName == 'A' || e.target.parentElement.tagName == 'A') {
-            console.log(e);
             const target = e.target.tagName == 'A' ? e.target : e.target.parentElement;
             const parent = target.parentElement;
             parent.classList.contains('open') ? parent.classList.remove('open') : parent.classList.add('open');

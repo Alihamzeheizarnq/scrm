@@ -46,7 +46,7 @@ const App = (props) => {
                                                 <span>{item.body}</span>
                                             </div>
                                             <div className="text-center mt-1">
-                                                <button type="button" className="btn btn-alt-success btn-sm  ml-1" data-toggle="click-ripple" style={{ overflow: 'hidden', position: 'relative', zIndex: 1 }}>
+                                                <button type="button" className="btn btn-alt-success btn-sm  mx-1" data-toggle="click-ripple" style={{ overflow: 'hidden', position: 'relative', zIndex: 1 }}>
                                                     <i class="fa fa-pencil-alt"></i>
                                                 </button>
                                                 <button type="button" className="btn btn-alt-danger btn-sm  " data-toggle="click-ripple" style={{ overflow: 'hidden', position: 'relative', zIndex: 1 }}>

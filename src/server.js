@@ -62,6 +62,9 @@ app.prepare().then(() => {
         .authenticate()
         .then(() => {
             console.log('Connection has been established successfully.');
+            app.listen(3001, () => {
+                console.log(`running serevr localhost:3000 ${process.env.NODE_ENV} mode....`);
+            });
 
         })
         .catch(err => {
@@ -70,8 +73,6 @@ app.prepare().then(() => {
             process.exit(2);
         });
 
-    app.listen(3001, () => {
-        console.log(`running serevr localhost:3000 ${process.env.NODE_ENV} mode....`);
-    });
+
 
 })

@@ -20,7 +20,6 @@ const reducer = (state = initState, action) => {
             }
 
         case USER_FETCH_SUCCEEDED:
-            console.log(action)
 
             return {
                 ...state,

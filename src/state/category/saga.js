@@ -47,7 +47,6 @@ function* selectCategory() {
     }
     try {
         const category = yield call(axios, args);
-        console.log(category)
 
         yield put(CategorySelectSuccess(category.data.category));
     } catch (e) {
