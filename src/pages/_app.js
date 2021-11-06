@@ -3,6 +3,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
+
 import Aside from "../components/partials/aside";
 import Footer from "../components/partials/footer";
 import Header from "../components/partials/Header";

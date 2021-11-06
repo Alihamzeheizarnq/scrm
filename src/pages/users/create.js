@@ -35,6 +35,7 @@ const App = () => {
     )
 }
 export async function getServerSideProps({ req }) {
+    
     if (!req.auth) {
         return req.redirectTo('/login');
     }
@@ -43,14 +44,4 @@ export async function getServerSideProps({ req }) {
         props: {},
     }
 }
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         UserFetchAction: (userId) => dispatch(UserFetchAction(userId)),
-//     }
-// }
-
-// const getStateToProps = (state) => ({
-//     users: state.users
-// })
-
 export default connect()(App);

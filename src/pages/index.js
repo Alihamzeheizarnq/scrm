@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
-import { UserFetchAction } from "../state/users/action";
 
-const App = ({ UserFetchAction }) => {
+const App = () => {
 
     return (
         <>
@@ -45,15 +44,9 @@ export async function getServerSideProps({ req }) {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        UserFetchAction: (userId) => dispatch(UserFetchAction(userId)),
-    }
-}
-
 const getStateToProps = (state) => ({
     users: state.users
 })
 
 
-export default connect(getStateToProps, mapDispatchToProps)(App);
+export default connect(getStateToProps)(App);

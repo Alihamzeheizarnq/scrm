@@ -1,6 +1,4 @@
 const Aside = () => {
-
-
     return (
         <>
             <aside id="side-overlay">
@@ -22,10 +20,9 @@ const Aside = () => {
                     </div>
                     <div className="content-side">
                         <div className="block pull-t pull-r-l">
-                            <div className="
-      block-content block-content-full block-content-sm
-      bg-body-light
-    ">
+                            <div
+                                className=" block-content block-content-full block-content-sm bg-body-light
+                                        ">
                                 <form>
                                     <div className="input-group">
                                         <input type="text" className="form-control" id="side-overlay-search"
@@ -40,10 +37,8 @@ const Aside = () => {
                             </div>
                         </div>
                         <div className="block pull-r-l">
-                            <div className="
-      block-content block-content-full block-content-sm
-      bg-body-light
-    ">
+                            <div 
+                            className="block-content block-content-full block-content-sm bg-body-light">
                                 <div className="row">
                                     <div className="col-4">
                                         <div className="font-size-sm font-w600 text-uppercase text-muted">

@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect  } from "react";
 import { connect } from "react-redux";
+
 import CategoryCrate from "../../components/users/category";
 import { CategorySelectRequest, ShowCategoryModal } from "../../state/category/action";
 
@@ -70,7 +71,6 @@ export async function getServerSideProps({ req }) {
     if (!req.auth) {
         return req.redirectTo('/login');
     }
-
     return {
         props: {},
     }

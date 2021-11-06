@@ -1,13 +1,11 @@
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 import { connect } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
 import { CategoryCreateRequest, ShowCategoryModal } from "../../state/category/action";
-import { useRouter } from "next/router";
-
-
 
 
 let schema = yup.object().shape({

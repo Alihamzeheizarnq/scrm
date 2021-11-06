@@ -1,12 +1,11 @@
 import * as yup from "yup";
+import { connect } from "react-redux";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from "next/router";
 
-import bg from './../../dist/image/photo17@2x.jpg'
-import { useEffect } from "react";
-import { connect } from "react-redux";
 import { LoginRequest } from "../../state/login/action";
+import bg from './../../dist/image/photo17@2x.jpg'
 
 let schema = yup.object().shape({
     username: yup.string().required('پر کردن این فیلد الزامی میباشد'),
@@ -17,7 +16,7 @@ const Login = ({ LoginRequest, showLoding }) => {
     const router = useRouter();
 
 
-    const { register, setError, handleSubmit, formState: { errors }
+    const { register , handleSubmit, formState: { errors }
     } = useForm({
         mode: "onChange",
         resolver: yupResolver(schema)
