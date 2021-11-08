@@ -1,4 +1,4 @@
-import { useEffect  } from "react";
+import { useEffect } from "react";
 import { connect } from "react-redux";
 
 import CategoryCrate from "../../components/users/category";
@@ -14,7 +14,151 @@ const App = (props) => {
 
     return (
         <>
-            <main id="main-container">
+
+
+            <div className="content-wrapper">
+                <div className="content-header row">
+                    <div className="content-header-left col-12 mb-2 mt-1">
+                        <div className="row breadcrumbs-top">
+                            <div className="col-12">
+                                <h5 className="content-header-title float-left pr-1">2 ستون</h5>
+                                <div className="breadcrumb-wrapper">
+                                    <ol className="breadcrumb p-0 mb-0">
+                                        <li className="breadcrumb-item"><a href="sk-layout-2-columns.html"><i className="bx bx-home-alt" /></a>
+                                        </li>
+                                        <li className="breadcrumb-item"><a href="#">طرح های شروع</a>
+                                        </li>
+                                        <li className="breadcrumb-item active">2 ستون
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="content-body">
+                    <section id="description" className="card">
+
+                        <div className="card">
+                            {/* datatable start */}
+                            <div className="table-responsive">
+                                <div id="table-extended-success_wrapper" className="dataTables_wrapper no-footer"><table id="table-extended-success" className="table mb-0 dataTable no-footer" role="grid">
+                                    <thead>
+                                        <tr role="row"><th className="sorting_asc" tabIndex={0} aria-controls="table-extended-success" rowSpan={1} colSpan={1} aria-sort="ascending" aria-label="کمپین: فعال سازی نمایش به صورت نزولی" style={{ width: '213.125px' }}>کمپین</th><th className="sorting_disabled" rowSpan={1} colSpan={1} aria-label="جزئیات حساب" style={{ width: '302.531px' }}>جزئیات حساب</th><th className="sorting_disabled" rowSpan={1} colSpan={1} aria-label="دسته" style={{ width: '140.453px' }}>دسته</th><th className="sorting_disabled" rowSpan={1} colSpan={1} aria-label="مقدار" style={{ width: '168.125px' }}>مقدار</th><th className="sorting_disabled" rowSpan={1} colSpan={1} aria-label="وضعیت" style={{ width: '101.125px' }}>وضعیت</th><th className="sorting_disabled" rowSpan={1} colSpan={1} aria-label="عمل" style={{ width: '51.6406px' }}>عمل</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr role="row" className="odd">
+                                            <td className="text-bold-600 pr-0 sorting_1"><img className="rounded-circle mr-1" src="../../assets/images/cards/3.png" alt="card" />نوشیدنی پپسی
+                                            </td>
+                                            <td>شماره کارت 4154 81** **** 7617</td>
+                                            <td className="text-bold-700"><i className="text-bold-600 align-middle bx bx-truck mr-50" /><span>حمل و نقل</span>
+                                            </td>
+                                            <td className="text-bold-700">564,000 تومان</td>
+                                            <td className="text-success">موفقیت!</td>
+                                            <td>
+                                                <div className="dropup">
+                                                    <span className="bx bx-dots-vertical-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                    </span>
+                                                    <div className="dropdown-menu">
+                                                        <a className="dropdown-item" href="#"><i className="bx bx-edit-alt mr-1" /> ویرایش</a>
+                                                        <a className="dropdown-item" href="#"><i className="bx bx-trash mr-1" /> حذف</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr><tr role="row" className="even">
+                                            <td className="text-bold-600 pr-0 sorting_1"><img className="rounded-circle mr-1" src="../../assets/images/cards/1.png" alt="card" />هدفون های بی سیم</td>
+                                            <td>شماره کارت 4154 81** **** 7617</td>
+                                            <td className="text-bold-700"><i className="text-bold-600 align-middle bx bx-music mr-50" /><span>موزیک</span>
+                                            </td>
+                                            <td className="text-bold-700">1,934,000 تومان</td>
+                                            <td className="text-success">موفقیت!</td>
+                                            <td>
+                                                <div className="dropdown">
+                                                    <span className="bx bx-dots-vertical-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu" />
+                                                    <div className="dropdown-menu">
+                                                        <a className="dropdown-item" href="#"><i className="bx bx-edit-alt mr-1" /> ویرایش</a>
+                                                        <a className="dropdown-item" href="#"><i className="bx bx-trash mr-1" /> حذف</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr><tr role="row" className="odd">
+                                            <td className="text-bold-600 pr-0 sorting_1"><img className="rounded-circle mr-1" src="../../assets/images/cards/4.png" alt="card" />هدفون های بی سیم</td>
+                                            <td>شماره کارت 4154 81** **** 7617</td>
+                                            <td className="text-bold-700"><i className="text-bold-600 align-middle bx bx-music mr-50" /><span>موزیک</span>
+                                            </td>
+                                            <td className="text-bold-700">232,000 تومان</td>
+                                            <td className="text-warning">در انتظار!</td>
+                                            <td>
+                                                <div className="dropdown">
+                                                    <span className="bx bx-dots-vertical-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                    </span>
+                                                    <div className="dropdown-menu">
+                                                        <a className="dropdown-item" href="#"><i className="bx bx-edit-alt mr-1" /> ویرایش</a>
+                                                        <a className="dropdown-item" href="#"><i className="bx bx-trash mr-1" /> حذف</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr><tr role="row" className="even">
+                                            <td className="text-bold-600 pr-0 sorting_1"><img className="rounded-circle mr-1" src="../../assets/images/cards/5.png" alt="card" />هدفون های بی سیم</td>
+                                            <td>شماره کارت 4154 81** **** 7617</td>
+                                            <td className="text-bold-700"><i className="text-bold-600 align-middle bx bx-truck mr-50" /><span>حمل و نقل</span>
+                                            </td>
+                                            <td className="text-bold-700">564,000 تومان</td>
+                                            <td className="text-success">موفقیت!</td>
+                                            <td>
+                                                <div className="dropdown">
+                                                    <span className="bx bx-dots-vertical-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                    </span>
+                                                    <div className="dropdown-menu">
+                                                        <a className="dropdown-item" href="#"><i className="bx bx-edit-alt mr-1" /> ویرایش</a>
+                                                        <a className="dropdown-item" href="#"><i className="bx bx-trash mr-1" /> حذف</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr><tr role="row" className="odd">
+                                            <td className="text-bold-600 pr-0 sorting_1"><img className="rounded-circle mr-1" src="../../assets/images/cards/2.png" alt="card" />هدفون های بی سیم</td>
+                                            <td>شماره کارت 4154 81** **** 7617</td>
+                                            <td className="text-bold-700"><i className="text-bold-600 align-middle bx bx-truck mr-50" /><span>حمل و نقل</span>
+                                            </td>
+                                            <td className="text-bold-700">894,000 تومان</td>
+                                            <td className="text-warning">در انتظار!</td>
+                                            <td>
+                                                <div className="dropdown">
+                                                    <span className="bx bx-dots-vertical-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                    </span>
+                                                    <div className="dropdown-menu">
+                                                        <a className="dropdown-item" href="#"><i className="bx bx-edit-alt mr-1" /> ویرایش</a>
+                                                        <a className="dropdown-item" href="#"><i className="bx bx-trash mr-1" /> حذف</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr><tr role="row" className="even">
+                                            <td className="text-bold-600 pr-0 sorting_1"><img className="rounded-circle mr-1" src="../../assets/images/cards/2.png" alt="card" />کفش نایک</td>
+                                            <td>شماره کارت 4154 81** **** 7617</td>
+                                            <td className="text-bold-700"><i className="text-bold-600 align-middle bx bx-tennis-ball mr-50" /><span>ورزشی</span></td>
+                                            <td className="text-bold-700">232,000 تومان</td>
+                                            <td className="text-danger">ناموفق!</td>
+                                            <td>
+                                                <div className="dropup">
+                                                    <span className="bx bx-dots-vertical-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                                    </span>
+                                                    <div className="dropdown-menu">
+                                                        <a className="dropdown-item" href="#"><i className="bx bx-edit-alt mr-1" /> ویرایش</a>
+                                                        <a className="dropdown-item" href="#"><i className="bx bx-trash mr-1" /> حذف</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr></tbody>
+                                </table></div>
+                            </div>
+                            {/* datatable ends */}
+                        </div>
+
+                    </section>
+                </div>
+            </div>
+
+            {/* <main id="main-container">
                 <div className="bg-body-light">
                     <div className="content">
                         <div className="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
@@ -61,7 +205,7 @@ const App = (props) => {
                         }
                     </div>
                 </div>
-            </main>
+            </main> */}
 
             <CategoryCrate />
         </>

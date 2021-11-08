@@ -11,12 +11,29 @@ import Meta from "../components/partials/meta";
 import SideBar from "../components/partials/sidebar";
 import store from "../state/store";
 
-import '../dist/css/codebase.min.css';
+
+
+import '../dist/css/vendors.min.css';
+import '../dist/css/prism.min.css';
+import '../dist/css/bootstrap.min.css';
+import '../dist/css/bootstrap-extended.css';
+import '../dist/css/colors.css';
+import '../dist/css/components.css';
+import '../dist/css/themes/dark-layout.css';
+import '../dist/css/themes/semi-dark-layout.css';
+import '../dist/css/vertical-menu.css';
 import '../dist/css/custom.css';
+
+
 import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from "react";
 
 
 function MyApp({ Component, pageProps }) {
+
+    useEffect(() => {
+        document.body.setAttribute('class', 'vertical-layout vertical-menu-modern 2-columns  navbar-sticky footer-static')
+    }, [])
 
     const router = useRouter();
 
@@ -33,52 +50,39 @@ function MyApp({ Component, pageProps }) {
                     router.asPath == '/login' ? (
                         <>
                             <Component {...pageProps} />
-                            <ToastContainer
-                                position="bottom-right"
-                                autoClose={5000}
-                                hideProgressBar={false}
-                                newestOnTop={false}
-                                closeOnClick
-                                rtl={true}
-                                pauseOnFocusLoss
-                                draggable
-                                pauseOnHover
-                                theme="colored"
-                            />
                         </>
                     ) : (
                         <>
-                            <div id="page-container"
-                                className="sidebar-o sidebar-r
-                        side-scroll
-                        page-header-modern
-                        main-content-boxed    rtl-support">
+                            <div className="header-navbar-shadow" />
+                            <Header />
+                            <SideBar />
+                            <Aside />
 
-                                <Aside />
-
-                                <SideBar />
-
-                                <Header />
+                            <div className="app-content content">
+                                <div className="content-overlay" />
 
                                 <Component {...pageProps} />
-
-                                <Footer />
-                                <ToastContainer
-                                    position="bottom-right"
-                                    autoClose={5000}
-                                    hideProgressBar={false}
-                                    newestOnTop={false}
-                                    closeOnClick
-                                    rtl={true}
-                                    pauseOnFocusLoss
-                                    draggable
-                                    pauseOnHover
-                                    theme="colored"
-                                />
                             </div>
+                            <div className="sidenav-overlay" />
+                            <div className="drag-target" />
+
+                            <Footer />
+
                         </>
                     )
                 }
+                <ToastContainer
+                    position="bottom-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={true}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="colored"
+                />
 
             </Provider>
         </>

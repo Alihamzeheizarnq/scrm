@@ -1,17 +1,11 @@
 const Footer = () => {
     return (
         <>
-            <footer id="page-footer" className="opacity-0" style={{ opacity: 1 }}>
-                <div className="content py-20 font-size-xs clearfix">
-                    <div className="float-right">
-                        Crafted with <i className="fa fa-heart text-pulse" /> by <a className="font-w600" href="http://goo.gl/vNS3I" target="_blank">pixelcave</a>
-                    </div>
-                    <div className="float-left">
-                        <a className="font-w600" href="https://goo.gl/po9Usv" target="_blank">Codebase 2.0</a> © <span className="js-year-copy">2017-21</span>
-                    </div>
-                </div>
+            <footer className="footer footer-static footer-light">
+                <p className="clearfix mb-0"><span className="float-left d-inline-block">ارائه شده در وب‌سایت <a href="https://www.rtl-theme.com" target="_blank">راست‌چین</a></span><span className="float-right d-sm-inline-block d-none">ساخته شده با<i className="bx bxs-heart pink ml-50 font-small-3" /></span>
+                    <button className="btn btn-primary btn-icon scroll-top" type="button"><i className="bx bx-up-arrow-alt" /></button>
+                </p>
             </footer>
-
         </>
     )
 }
