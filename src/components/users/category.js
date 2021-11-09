@@ -41,7 +41,7 @@ const CategoryCrate = ({ CategoryCreateRequest, show_modal_category, ShowModal }
 
     return (
         <>
-            <div className={`customizer d-none d-md-block ${show_modal_category ? 'open' : ''}`}>
+            <div className={`customizer  d-md-block ${show_modal_category ? 'open' : ''}`}>
                 <a className="customizer-close" href="#" onClick={e => { ShowModal(false); }}><i className="bx bx-x" />
                 </a>
                 <a className="customizer-toggle" href="#" onClick={e => { ShowModal(! show_modal_category); }}>

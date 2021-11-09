@@ -2,12 +2,14 @@ import { call, put, takeEvery } from 'redux-saga/effects'
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-import { LodingSuccessRequest, LoginErrorRequest, ShowLodingLogin } from './action';
+import { LodingSuccessRequest, LoginErrorRequest, ShowLodingLogin, ShowLodingLoginFullPage } from './action';
 import { LOGIN_REQUEST } from './action-type';
 
 //create saga
 function* Login(action) {
 
+
+    console.log(action);
     const args = {
         method: "POST",
         url: '/v1/login',
@@ -18,11 +20,14 @@ function* Login(action) {
     try {
         const auth = yield call(axios, args);
         yield put(LodingSuccessRequest(auth.data.user));
-        put(ShowLodingLogin(false));
+        yield put(ShowLodingLogin(false));
         yield toast.success('ورود موفق !');
+        yield put(ShowLodingLoginFullPage(true));
         yield setTimeout(() => {
             action.payload.router.push('/');
-        }, 2000)
+        }, 3000)
+        // yield put(ShowLodingLoginFullPage(false));
+
 
     } catch (e) {
 

@@ -22,6 +22,8 @@ import '../dist/css/components.css';
 import '../dist/css/themes/dark-layout.css';
 import '../dist/css/themes/semi-dark-layout.css';
 import '../dist/css/vertical-menu.css';
+import '../dist/css/authentication.css'
+import '../dist/css/loader.css'
 import '../dist/css/custom.css';
 
 
@@ -32,7 +34,19 @@ import { useEffect } from "react";
 function MyApp({ Component, pageProps }) {
 
     useEffect(() => {
-        document.body.setAttribute('class', 'vertical-layout vertical-menu-modern 2-columns  navbar-sticky footer-static')
+        if (router.asPath == '/login') {
+            document.body.classList.add(
+                'boxicon-layout',
+                'no-card-shadow',
+                '1-column',
+                'blank-page',
+                'bg-full-screen-image'
+            )
+        } else {
+            document.body.setAttribute('class', 'vertical-layout vertical-menu-modern 2-columns  navbar-sticky footer-static')
+        }
+
+
     }, [])
 
     const router = useRouter();
@@ -45,6 +59,8 @@ function MyApp({ Component, pageProps }) {
                     <link rel="icon" href="/favicon.png" />
                     <Meta />
                 </Head>
+              
+                
 
                 {
                     router.asPath == '/login' ? (

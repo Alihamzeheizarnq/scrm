@@ -1,10 +1,11 @@
-import { LOGIN_ERROR_REQUEST, LOGIN_REQUEST, LOGIN_SUCCESS_REQUEST, SHOW_LOADING_LOGIN } from "./action-type";
+import { LOGIN_ERROR_REQUEST, LOGIN_REQUEST, LOGIN_SUCCESS_REQUEST, SHOW_LOADING_LOGIN, SHOW_LOADING_LOGIN_FULL_PAGE } from "./action-type";
 
 const initState = {
     data: null,
     user: null,
     errro: null,
-    showLoding: false
+    showLoding: false,
+    showLodingfullPage: false
 };
 
 
@@ -45,6 +46,12 @@ const reducer = (state = initState, action) => {
             return {
                 ...state,
                 showLoding: action.payload
+            }
+        case SHOW_LOADING_LOGIN_FULL_PAGE:
+
+            return {
+                ...state,
+                showLodingfullPage: action.payload
             }
         default:
             return state;

@@ -116,10 +116,25 @@ h6 a {
   font-family: IRANSansfanum !important;
 }
 
-.all-tab-user a{
+.all-tab-user a {
   cursor: pointer;
   user-select: none;
 }
-.Toastify *{
+.Toastify * {
   font-family: IRANSansfanum !important;
+}
+
+#__next {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-content{
+  flex-grow: 1;
+}
+
+html body.bg-full-screen-image {
+  background: url(../image/auth-bg.jpg) no-repeat center center;
+  background-size: cover;
 }

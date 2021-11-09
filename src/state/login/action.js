@@ -1,4 +1,4 @@
-import { LOGIN_ERROR_REQUEST, LOGIN_REQUEST, LOGIN_SUCCESS_REQUEST, SHOW_LOADING_LOGIN } from "./action-type";
+import { LOGIN_ERROR_REQUEST, LOGIN_REQUEST, LOGIN_SUCCESS_REQUEST, SHOW_LOADING_LOGIN, SHOW_LOADING_LOGIN_FULL_PAGE } from "./action-type";
 
 export const LoginRequest = (data) => ({
     type: LOGIN_REQUEST,
@@ -21,5 +21,9 @@ export const LoginErrorRequest = (error) => ({
 
 export const ShowLodingLogin = (bool) => ({
     type: SHOW_LOADING_LOGIN,
+    payload: bool
+});
+export const ShowLodingLoginFullPage = (bool) => ({
+    type: SHOW_LOADING_LOGIN_FULL_PAGE,
     payload: bool
 });

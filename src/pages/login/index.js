@@ -5,18 +5,51 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from "next/router";
 
 import { LoginRequest } from "../../state/login/action";
-import bg from './../../dist/image/photo17@2x.jpg'
+
+import bg from './../../dist/image/login.png'
+import { useEffect } from "react";
 
 let schema = yup.object().shape({
     username: yup.string().required('پر کردن این فیلد الزامی میباشد'),
     password: yup.string().required('پر کردن این فیلد الزامی میباشد'),
 
 });
-const Login = ({ LoginRequest, showLoding }) => {
+const Login = ({ LoginRequest, showLoding, showLodingfullPage }) => {
+
+
+    useEffect(() => {
+
+        if (showLodingfullPage) {
+            document.body.classList.remove(
+                'boxicon-layout',
+                'no-card-shadow',
+                '1-column',
+                'blank-page',
+                'bg-full-screen-image'
+            )
+        }
+
+
+        return () => {
+
+            document.body.classList.add(
+                'vertical-layout',
+                'vertical-menu-modern',
+                '2-columns',
+                'navbar-sticky',
+                'footer-static'
+            )
+        }
+
+
+      
+
+    })
+
     const router = useRouter();
 
 
-    const { register , handleSubmit, formState: { errors }
+    const { register, handleSubmit, formState: { errors }
     } = useForm({
         mode: "onChange",
         resolver: yupResolver(schema)
@@ -28,80 +61,122 @@ const Login = ({ LoginRequest, showLoding }) => {
 
     return (
         <>
-            <div id="page-container">
-                <main id="main-container">
-                    <div className="bg-image" style={{ backgroundImage: `url(${bg.src})` }}>
-                        <div className="row g-0 bg-primary-op">
-                            <div className="hero-static col-md-6 d-flex align-items-center bg-body-extra-light">
-                                <div className="p-3 w-100">
-                                    <div className="mb-3 text-center">
-                                        <a className="link-fx fw-bold fs-1" href="index.html">
-                                            <span className="text-dark">ثر</span><span className="text-primary">یا</span>
-                                        </a>
-                                        <p className="text-uppercase fw-bold fs-sm text-muted">صفحه ورود</p>
-                                    </div>
-                                    <div className="row g-0 justify-content-center">
-                                        <div className="col-sm-8 col-xl-6">
-                                            <form className="js-validation-signin" onSubmit={handleSubmit(onSubmit)}>
-                                                <div className="py-3">
-                                                    <div className="mb-4">
-                                                        <input type="text"
-                                                            className={`form-control form-control-lg form-control-alt ${errors?.username?.message ? 'is-invalid' : ''}`}
-                                                            id="login-username"
-                                                            name="login-username"
-                                                            placeholder="نام کاربری"
-                                                            {...register('username')}
-                                                        />
-                                                        <div className="invalid-feedback">{errors?.username?.message}</div>
 
-                                                    </div>
-                                                    <div className="mb-4">
-                                                        <input
-                                                            type="password"
-                                                            className={`form-control form-control-lg form-control-alt ${errors?.password?.message ? 'is-invalid' : ''}`}
-                                                            id="login-password"
-                                                            name="login-password"
-                                                            placeholder="رمز عبور"
-                                                            {...register('password')}
-
-                                                        />
-                                                        <div className="invalid-feedback">{errors?.password?.message}</div>
-
-                                                    </div>
-                                                </div>
-                                                <div className="mb-4">
-                                                    {
-                                                        showLoding ? (
-                                                            <button type="submit" className="btn w-100 btn-lg btn-hero btn-primary">
-                                                                <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" />
-                                                                صبر کنید ...
-                                                            </button>
-                                                        ) : (
-                                                            <button type="submit" className="btn w-100 btn-lg btn-hero btn-primary">
-                                                                <i className="fa fa-fw fa-sign-in-alt opacity-50 me-1" /> ورود
-                                                            </button>
-                                                        )
-                                                    }
-
-
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="hero-static col-md-6 d-none d-md-flex align-items-md-center justify-content-md-center text-md-center">
-                                <div className="p-3">
-                                    <p className="display-4 fw-bold text-white mb-3">
-                                        سامانه مدیریت مشتری
-                                    </p>
-
-                                </div>
-                            </div>
+            {
+                showLodingfullPage ? (
+                    <main>
+                        <div className="preloader">
+                            <div className="preloader__square" />
+                            <div className="preloader__square" />
+                            <div className="preloader__square" />
+                            <div className="preloader__square" />
                         </div>
-                    </div>
-                </main>
-            </div>
+                        <div className="status">صبر کنید ...<span className="status__dot">.</span><span className="status__dot">.</span><span className="status__dot">.</span></div>
+                    </main>
+                ) :
+                    (
+                        <>
+                            <div className="app-content content">
+                                <div className="content-overlay" />
+                                <div className="content-wrapper">
+                                    <div className="content-header row">
+                                    </div>
+                                    <div className="content-body">{/* login page start */}
+                                        <section id="auth-login" className="row flexbox-container">
+                                            <div className="col-xl-8 col-11">
+                                                <div className="card bg-authentication mb-0">
+                                                    <div className="row m-0">
+                                                        {/* left section-login */}
+                                                        <div className="col-md-6 col-12 px-0">
+                                                            <div className="card disable-rounded-right mb-0 p-2 h-100 d-flex justify-content-center">
+                                                                <div className="card-header pb-1">
+                                                                    <div className="card-title">
+                                                                        <h4 className="text-center mb-2">خوش آمدید</h4>
+                                                                    </div>
+                                                                </div>
+                                                                <div className="card-content">
+                                                                    <div className="card-body">
+                                                                        {/* <div className="d-flex flex-md-row flex-column justify-content-around">
+                                                            <a href="#" className="btn btn-social btn-google btn-block font-small-3 mr-md-1 mb-md-0 mb-1">
+                                                                <i className="bx bxl-google font-medium-3" /><span className="pl-50 d-block text-center">گوگل</span></a>
+                                                            <a href="#" className="btn btn-social btn-block mt-0 btn-facebook font-small-3">
+                                                                <i className="bx bxl-facebook-square font-medium-3" /><span className="pl-50 d-block text-center">فیسبوک</span></a>
+                                                        </div>
+                                                        <div className="divider">
+                                                            <div className="divider-text text-uppercase text-muted"><small>یا توسط ایمیل وارد شوید</small>
+                                                            </div>
+                                                        </div> */}
+                                                                        <form onSubmit={handleSubmit(onSubmit)}>
+                                                                            <div className="form-group mb-50">
+                                                                                <label className="text-bold-700" htmlFor="exampleInputEmail1">آدرس ایمیل</label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    {...register('username')}
+
+                                                                                    className={`form-control text-left ${errors?.username?.message ? 'is-invalid' : ''}`}
+                                                                                    id="exampleInputEmail1"
+                                                                                    placeholder="آدرس ایمیل"
+                                                                                    dir="ltr" />
+                                                                                <div className="invalid-feedback">{errors?.username?.message}</div>
+
+                                                                            </div>
+                                                                            <div className="form-group">
+                                                                                <label className="text-bold-700" htmlFor="exampleInputPassword1">رمز عبور</label>
+                                                                                <input
+                                                                                    type="password"
+                                                                                    {...register('password')}
+                                                                                    className={`form-control text-left ${errors?.password?.message ? 'is-invalid' : ''}`}
+                                                                                    id="exampleInputPassword1"
+                                                                                    placeholder="رمز عبور"
+                                                                                    dir="ltr" />
+                                                                                <div className="invalid-feedback">{errors?.password?.message}</div>
+
+                                                                            </div>
+                                                                            <div className="form-group d-flex flex-md-row flex-column justify-content-between align-items-center">
+                                                                                <div className="text-left">
+                                                                                    <div className="checkbox checkbox-sm">
+                                                                                        <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+                                                                                        <label className="checkboxsmall" htmlFor="exampleCheck1"><small>مرا به خاطر بسپار</small></label>
+                                                                                    </div>
+                                                                                </div>
+                                                                                {/* <div className="text-right line-height-2"><a href="auth-forgot-password.html" className="card-link"><small>رمز عبورتان را فراموش کرده اید؟</small></a></div> */}
+                                                                            </div>
+                                                                            {
+                                                                                showLoding ? (
+                                                                                    <button type="submit" className="btn w-100 btn-lg btn-hero btn-primary">
+                                                                                        <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" />
+                                                                                        صبر کنید ...
+                                                                                    </button>
+                                                                                ) : (
+                                                                                    <button type="submit" className="btn w-100 btn-lg btn-hero btn-primary">
+                                                                                        <i className="fa fa-fw fa-sign-in-alt opacity-50 me-1" /> ورود
+                                                                                    </button>
+                                                                                )
+                                                                            }
+                                                                        </form>
+                                                                        <hr />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        {/* right section image */}
+                                                        <div className="col-md-6 d-md-block d-none text-center align-self-center p-3">
+                                                            <div className="card-content">
+                                                                <img className="img-fluid" src={bg.src} alt="branding logo" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                        {/* login page ends */}
+                                    </div>
+                                </div>
+                            </div>
+                            {/* END: Content*/}
+                        </>
+                    )
+            }
 
 
 
@@ -127,6 +202,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const getStateToProps = (state) => ({
     showLoding: state.auth.showLoding,
+    showLodingfullPage: state.auth.showLodingfullPage
 })
 
 
