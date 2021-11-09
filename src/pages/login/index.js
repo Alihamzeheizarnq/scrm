@@ -17,36 +17,14 @@ let schema = yup.object().shape({
 const Login = ({ LoginRequest, showLoding, showLodingfullPage }) => {
 
 
-    useEffect(() => {
-
-        if (showLodingfullPage) {
-            document.body.classList.remove(
-                'boxicon-layout',
-                'no-card-shadow',
-                '1-column',
-                'blank-page',
-                'bg-full-screen-image'
-            )
-        }
-
-
-        return () => {
-
-            document.body.classList.add(
-                'vertical-layout',
-                'vertical-menu-modern',
-                '2-columns',
-                'navbar-sticky',
-                'footer-static'
-            )
-        }
-
-
-      
-
-    })
-
     const router = useRouter();
+    useEffect(() => {
+        document.body.setAttribute('class', 'boxicon-layout no-card-shadow 1-column blank-page bg-full-screen-image');
+        return () => {
+            document.body.setAttribute('class', 'vertical-layout vertical-menu-modern 2-columns  navbar-sticky footer-static');
+        }
+    }, [router])
+
 
 
     const { register, handleSubmit, formState: { errors }

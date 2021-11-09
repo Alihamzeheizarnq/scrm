@@ -4,12 +4,13 @@ import axios from 'axios';
 
 import { LodingSuccessRequest, LoginErrorRequest, ShowLodingLogin, ShowLodingLoginFullPage } from './action';
 import { LOGIN_REQUEST } from './action-type';
+import store from './../store';
 
 //create saga
 function* Login(action) {
 
 
-    console.log(action);
+    console.log(store);
     const args = {
         method: "POST",
         url: '/v1/login',
@@ -25,8 +26,11 @@ function* Login(action) {
         yield put(ShowLodingLoginFullPage(true));
         yield setTimeout(() => {
             action.payload.router.push('/');
+            setTimeout(() => {
+                store.dispatch(ShowLodingLoginFullPage(false))
+            }, 1000)
         }, 3000)
-        // yield put(ShowLodingLoginFullPage(false));
+
 
 
     } catch (e) {

@@ -34,19 +34,7 @@ import { useEffect } from "react";
 function MyApp({ Component, pageProps }) {
 
     useEffect(() => {
-        if (router.asPath == '/login') {
-            document.body.classList.add(
-                'boxicon-layout',
-                'no-card-shadow',
-                '1-column',
-                'blank-page',
-                'bg-full-screen-image'
-            )
-        } else {
-            document.body.setAttribute('class', 'vertical-layout vertical-menu-modern 2-columns  navbar-sticky footer-static')
-        }
-
-
+        document.body.setAttribute('class', 'vertical-layout vertical-menu-modern 2-columns  navbar-sticky footer-static')
     }, [])
 
     const router = useRouter();
@@ -59,8 +47,8 @@ function MyApp({ Component, pageProps }) {
                     <link rel="icon" href="/favicon.png" />
                     <Meta />
                 </Head>
-              
-                
+
+
 
                 {
                     router.asPath == '/login' ? (

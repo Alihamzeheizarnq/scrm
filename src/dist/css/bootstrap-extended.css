@@ -842,7 +842,7 @@ label {
   right: 8px;
 }
 
-select.form-control:not([multiple]) {
+/* select.form-control:not([multiple]) {
   background-image: url(../../assets/images/pages/arrow-down.png);
   background-position: calc(100% - (100% - 12px)) 13px,
     calc(100% - (100% - 20px)) 13px, 0 0;
@@ -851,9 +851,9 @@ select.form-control:not([multiple]) {
   -webkit-appearance: none;
   -moz-appearance: none;
   padding-left: 1.5rem;
-}
+} */
 
-select.form-control.bg-primary:not([multiple]),
+/* select.form-control.bg-primary:not([multiple]),
 select.form-control.bg-danger:not([multiple]),
 select.form-control.bg-success:not([multiple]),
 select.form-control.bg-warning:not([multiple]),
@@ -863,7 +863,7 @@ select.form-control.bg-light:not([multiple]),
 select.form-control.bg-dark:not([multiple]),
 select.form-control.bg-black:not([multiple]) {
   background-image: url(../../assets/images/pages/arrow-down-white.png);
-}
+} */
 
 .custom-select {
   -moz-appearance: none;
