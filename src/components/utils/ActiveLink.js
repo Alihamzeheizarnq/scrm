@@ -6,7 +6,7 @@ const ActiveLink = ({ children, activeClassName, ...props }) => {
     const { asPath } = useRouter()
     const child = Children.only(children)
     const childClassName = child.props.className || ''
-    activeClassName = activeClassName || 'active';
+    activeClassName = activeClassName || 'active'
     const className =
         asPath === props.href || asPath === props.as
             ? `${childClassName} ${activeClassName}`.trim()

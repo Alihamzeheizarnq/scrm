@@ -1,8 +1,7 @@
 class Transform {
-
     TransformCollection = (object) => {
-        return object.map(item => this.transform(item))
+        return object.map((item) => this.transform(item))
     }
 }
 
-module.exports = Transform;
+module.exports = Transform

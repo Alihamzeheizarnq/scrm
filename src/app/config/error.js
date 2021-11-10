@@ -36,29 +36,39 @@ const fa = {
     title: `عنوان`,
     username: `نام کاربری`,
     year: `سال`,
-};
-let setlabel = name => fa[name] ? fa[name] : name;
+}
+let setlabel = (name) => (fa[name] ? fa[name] : name)
 let handelErrors = {
     mixed: {
-        required: args => `وارد کردن فیلد ${setlabel(args.path)} الزامی میباشد`,
+        required: (args) =>
+            `وارد کردن فیلد ${setlabel(args.path)} الزامی میباشد`,
     },
     number: {
-        typeError: args => `فیلد ${setlabel(args.path)} باید یه عدد صحیح باشد`,
-        min: args => `${setlabel(args.path)} نباید کوچکتر از ${args.min} باشد`,
-        max: args => `${setlabel(args.path)} نباید بزرگتر از ${args.max} باشد`,
-        lessThan: args => `${setlabel(args.path)} باید کمتر از ${args.less} باشد`,
-        moreThan: args => `${setlabel(args.path)} باید بیشتر از ${args.more} باشد`,
+        typeError: (args) =>
+            `فیلد ${setlabel(args.path)} باید یه عدد صحیح باشد`,
+        min: (args) =>
+            `${setlabel(args.path)} نباید کوچکتر از ${args.min} باشد`,
+        max: (args) =>
+            `${setlabel(args.path)} نباید بزرگتر از ${args.max} باشد`,
+        lessThan: (args) =>
+            `${setlabel(args.path)} باید کمتر از ${args.less} باشد`,
+        moreThan: (args) =>
+            `${setlabel(args.path)} باید بیشتر از ${args.more} باشد`,
     },
     string: {
-        email: args => `${setlabel(args.path)} باید یک ایمیل معتبر باشد`,
-        min: args =>
-            `${setlabel(args.path)} نباید کمتر از ${args.min} کاراکتر داشته باشد.`,
-        max: args =>
-            `${setlabel(args.path)} نباید بیشتر از ${args.min} کاراکتر داشته باشد.`,
-        EmailExists: args => 'cftghcrdftghcr ftghh'
+        email: (args) => `${setlabel(args.path)} باید یک ایمیل معتبر باشد`,
+        min: (args) =>
+            `${setlabel(args.path)} نباید کمتر از ${
+                args.min
+            } کاراکتر داشته باشد.`,
+        max: (args) =>
+            `${setlabel(args.path)} نباید بیشتر از ${
+                args.min
+            } کاراکتر داشته باشد.`,
+        EmailExists: (args) => 'cftghcrdftghcr ftghh',
     },
-};
+}
 
 module.exports = {
-    handelErrors
-};
+    handelErrors,
+}

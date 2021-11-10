@@ -1,44 +1,46 @@
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { Provider } from 'react-redux'
+import { ToastContainer } from 'react-toastify'
 
-import Head from "next/head";
-import { useRouter } from "next/router";
-import { Provider } from "react-redux";
-import { ToastContainer } from "react-toastify";
+import Aside from '../components/partials/aside'
+import Footer from '../components/partials/footer'
+import Header from '../components/partials/Header'
+import Meta from '../components/partials/meta'
+import SideBar from '../components/partials/sidebar'
+import store from '../state/store'
 
-import Aside from "../components/partials/aside";
-import Footer from "../components/partials/footer";
-import Header from "../components/partials/Header";
-import Meta from "../components/partials/meta";
-import SideBar from "../components/partials/sidebar";
-import store from "../state/store";
-
-
-
-import '../dist/css/vendors.min.css';
-import '../dist/css/prism.min.css';
-import '../dist/css/bootstrap.min.css';
-import '../dist/css/bootstrap-extended.css';
-import '../dist/css/colors.css';
-import '../dist/css/components.css';
-import '../dist/css/themes/dark-layout.css';
-import '../dist/css/themes/semi-dark-layout.css';
-import '../dist/css/vertical-menu.css';
+import '../dist/css/vendors.min.css'
+import '../dist/css/prism.min.css'
+import '../dist/css/bootstrap.min.css'
+import '../dist/css/bootstrap-extended.css'
+import '../dist/css/colors.css'
+import '../dist/css/components.css'
+import '../dist/css/themes/dark-layout.css'
+import '../dist/css/themes/semi-dark-layout.css'
+import '../dist/css/vertical-menu.css'
 import '../dist/css/authentication.css'
 import '../dist/css/loader.css'
-import '../dist/css/custom.css';
+import '../dist/css/custom.css'
 
-
-import 'react-toastify/dist/ReactToastify.css';
-import { useEffect } from "react";
-
+import 'react-toastify/dist/ReactToastify.css'
+import { useEffect } from 'react'
 
 function MyApp({ Component, pageProps }) {
-
+    const router = useRouter()
     useEffect(() => {
-        document.body.setAttribute('class', 'vertical-layout vertical-menu-modern 2-columns  navbar-sticky footer-static')
-    }, [])
+        document.body.setAttribute(
+            'class',
+            'vertical-layout vertical-menu-modern 2-columns  navbar-sticky footer-static',
+        )
 
-    const router = useRouter();
-
+        if (router.route == '/login') {
+            document.body.setAttribute(
+                'class',
+                'boxicon-layout no-card-shadow 1-column blank-page bg-full-screen-image',
+            )
+        }
+    }, [router.route])
 
     return (
         <>
@@ -48,33 +50,28 @@ function MyApp({ Component, pageProps }) {
                     <Meta />
                 </Head>
 
+                {router.route == '/login' ? (
+                    <>
+                        <Component {...pageProps} />
+                    </>
+                ) : (
+                    <>
+                        <div className="header-navbar-shadow" />
+                        <Header />
+                        <SideBar />
+                        <Aside />
 
+                        <div className="app-content content">
+                            <div className="content-overlay" />
 
-                {
-                    router.asPath == '/login' ? (
-                        <>
                             <Component {...pageProps} />
-                        </>
-                    ) : (
-                        <>
-                            <div className="header-navbar-shadow" />
-                            <Header />
-                            <SideBar />
-                            <Aside />
+                        </div>
+                        <div className="sidenav-overlay" />
+                        <div className="drag-target" />
 
-                            <div className="app-content content">
-                                <div className="content-overlay" />
-
-                                <Component {...pageProps} />
-                            </div>
-                            <div className="sidenav-overlay" />
-                            <div className="drag-target" />
-
-                            <Footer />
-
-                        </>
-                    )
-                }
+                        <Footer />
+                    </>
+                )}
                 <ToastContainer
                     position="bottom-right"
                     autoClose={5000}
@@ -87,10 +84,8 @@ function MyApp({ Component, pageProps }) {
                     pauseOnHover
                     theme="colored"
                 />
-
             </Provider>
         </>
     )
-
 }
 export default MyApp
