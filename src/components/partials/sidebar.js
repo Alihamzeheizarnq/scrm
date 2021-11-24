@@ -8,6 +8,7 @@ const SideBar = () => {
             const target =
                 e.target.tagName == 'A' ? e.target : e.target.parentElement
             const parent = target.parentElement
+            const icon = parent.querySelector('.icon-tab')
             parent.classList.contains('open')
                 ? parent.classList.remove(
                       'open',
@@ -19,6 +20,16 @@ const SideBar = () => {
                       'sidebar-group-active',
                       'has-sub',
                   )
+
+            if (icon) {
+                if (parent.classList.contains('open')) {
+                    icon.classList.remove('bx-chevron-down')
+                    icon.classList.add('bx-chevron-up')
+                } else {
+                    icon.classList.remove('bx-chevron-up')
+                    icon.classList.add('bx-chevron-down')
+                }
+            }
 
             const ul = document.querySelector('#main-menu-navigation')
             const index = Array.from(ul.children).indexOf(parent)
@@ -96,9 +107,35 @@ const SideBar = () => {
                                 >
                                     کاربران
                                 </span>
-                                <i className="bx bx-chevron-down" />
+                                <i className="icon-tab bx bx-chevron-down" />
                             </a>
                             <ul className="menu-content">
+                                <li>
+                                    <Link href="/users/category">
+                                        <a>
+                                            <i className="bx bx-left-arrow-alt" />
+                                            <span
+                                                className="menu-item"
+                                                data-i18n="1 column"
+                                            >
+                                                دسته بندی
+                                            </span>
+                                        </a>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/users/category">
+                                        <a>
+                                            <i className="bx bx-left-arrow-alt" />
+                                            <span
+                                                className="menu-item"
+                                                data-i18n="1 column"
+                                            >
+                                                دسته بندی
+                                            </span>
+                                        </a>
+                                    </Link>
+                                </li>
                                 <li>
                                     <Link href="/users/category">
                                         <a>
