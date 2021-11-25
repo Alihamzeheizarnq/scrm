@@ -1,8 +1,11 @@
 import Link from 'next/link'
+import { memo, useState } from 'react'
 import ActiveLink from '../utils/ActiveLink'
 import { OpenMenu } from '../utils/ActiveNav'
 
 const SideBar = () => {
+    const [expanded, setExpanded] = useState(false)
+
     const handleSideBar = (e) => {
         if (e.target.tagName == 'A' || e.target.parentElement.tagName == 'A') {
             const target =
@@ -23,11 +26,11 @@ const SideBar = () => {
 
             if (icon) {
                 if (parent.classList.contains('open')) {
-                    icon.classList.remove('bx-chevron-down')
-                    icon.classList.add('bx-chevron-up')
-                } else {
                     icon.classList.remove('bx-chevron-up')
                     icon.classList.add('bx-chevron-down')
+                } else {
+                    icon.classList.remove('bx-chevron-down')
+                    icon.classList.add('bx-chevron-up')
                 }
             }
 
@@ -38,16 +41,46 @@ const SideBar = () => {
             for (const iterator of ul.children) {
                 if (number != index) {
                     iterator.classList.remove('open', 'has-sub')
+                    if (iterator.querySelector('.icon-tab')) {
+                        iterator
+                            .querySelector('.icon-tab')
+                            .classList.remove('bx-chevron-down')
+                        iterator
+                            .querySelector('.icon-tab')
+                            .classList.add('bx-chevron-up')
+                    }
                 }
                 number++
+            }
+        }
+    }
+
+    const setExpandedFunction = (bool) => {
+        setExpanded(bool)
+
+        if (bool) {
+            const menuMin = document.querySelector('.menu-collapsed-open')
+            if (menuMin) {
+                menuMin.classList.add('open')
+                menuMin.classList.remove('menu-collapsed-open')
+            }
+        } else {
+            const menuOpen = document.querySelector('.open')
+            if (menuOpen) {
+                menuOpen.classList.add('menu-collapsed-open')
+                menuOpen.classList.remove('open')
             }
         }
     }
     return (
         <>
             <div
-                className="main-menu menu-fixed menu-light menu-accordion menu-shadow"
+                className={`main-menu menu-fixed menu-light menu-accordion menu-shadow ${
+                    expanded ? 'expanded' : ''
+                }`}
                 data-scroll-to-active="true"
+                onMouseLeave={(e) => setExpandedFunction(false)}
+                onMouseOverCapture={(e) => setExpandedFunction(true)}
             >
                 <div className="navbar-header">
                     <ul className="nav navbar-nav flex-row">
@@ -74,6 +107,11 @@ const SideBar = () => {
                                 <i
                                     className="toggle-icon bx-disc font-medium-4 d-none d-xl-block collapse-toggle-icon primary bx"
                                     data-ticon="bx-disc"
+                                    onClick={(e) =>
+                                        document.body.classList.toggle(
+                                            'menu-collapsed',
+                                        )
+                                    }
                                 />
                             </a>
                         </li>
@@ -107,7 +145,12 @@ const SideBar = () => {
                                 >
                                     کاربران
                                 </span>
-                                <i className="icon-tab bx bx-chevron-down" />
+                                {expanded ? (
+                                    <i
+                                        className="icon-tab bx bx-chevron-down"
+                                        style={{ marginLeft: -8 }}
+                                    />
+                                ) : null}
                             </a>
                             <ul className="menu-content">
                                 <li>
@@ -158,4 +201,4 @@ const SideBar = () => {
     )
 }
 
-export default SideBar
+export default memo(SideBar)

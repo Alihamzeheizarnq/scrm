@@ -142,7 +142,7 @@ html body.bg-full-screen-image {
 
 .main-menu.menu-light .navigation li.has-sub.open ul {
     max-height: 500px;
-    transition: max-height 1s ease-in;
+    transition: max-height .40s ease-in;
 }
 .main-menu.menu-light .navigation > li:not(.open) > ul {
     display: block;
