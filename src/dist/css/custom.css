@@ -135,18 +135,19 @@ h6 a {
     flex-grow: 1;
 }
 
-html body.bg-full-screen-image {
+html .parent__all_element.bg-full-screen-image {
     background: url(../image/auth-bg.jpg) no-repeat center center;
     background-size: cover;
 }
 
 .main-menu.menu-light .navigation li.has-sub.open ul {
     max-height: 500px;
-    transition: max-height .40s ease-in;
+    transition: max-height 0.4s ease-in;
 }
 .main-menu.menu-light .navigation > li:not(.open) > ul {
     display: block;
     max-height: 0;
-    transition: max-height .15s ease-out;
+    transition: max-height 0.15s ease-out;
     overflow: hidden;
 }
+

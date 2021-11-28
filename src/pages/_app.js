@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { Provider } from 'react-redux'
+import { connect, Provider } from 'react-redux'
 import { ToastContainer } from 'react-toastify'
 
 import Aside from '../components/partials/aside'
@@ -25,22 +25,23 @@ import '../dist/css/custom.css'
 
 import 'react-toastify/dist/ReactToastify.css'
 import { useEffect } from 'react'
+import ParentElement from '../components/ParentElement'
 
 function MyApp({ Component, pageProps }) {
     const router = useRouter()
     useEffect(() => {
-        document.body.setAttribute(
-            'class',
-            'vertical-layout vertical-menu-modern 2-columns  navbar-sticky footer-static',
-        )
-
+  
         if (router.route == '/login') {
             document.body.setAttribute(
                 'class',
-                'boxicon-layout no-card-shadow 1-column blank-page bg-full-screen-image',
+                '',
             )
         }
     }, [router.route])
+
+
+
+
 
     return (
         <>
@@ -50,42 +51,46 @@ function MyApp({ Component, pageProps }) {
                     <Meta />
                 </Head>
 
-                {router.route == '/login' ? (
-                    <>
-                        <Component {...pageProps} />
-                    </>
-                ) : (
-                    <>
-                        <div className="header-navbar-shadow" />
-                        <Header />
-                        <SideBar />
-                        <Aside />
+                <ParentElement>
 
-                        <div className="app-content content">
-                            <div className="content-overlay" />
-
+                    {router.route == '/login' ? (
+                        <>
                             <Component {...pageProps} />
-                        </div>
-                        <div className="sidenav-overlay" />
-                        <div className="drag-target" />
+                        </>
+                    ) : (
+                        <>
+                            <div className="header-navbar-shadow" />
+                            <Header />
+                            <SideBar />
+                            <Aside />
 
-                        <Footer />
-                    </>
-                )}
-                <ToastContainer
-                    position="bottom-right"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={true}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    theme="colored"
-                />
+                            <div className="app-content content">
+                                <div className="content-overlay" />
+
+                                <Component {...pageProps} />
+                            </div>
+                            <div className="sidenav-overlay" />
+                            <div className="drag-target" />
+
+                            <Footer />
+                        </>
+                    )}
+                    <ToastContainer
+                        position="bottom-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={true}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                        theme="colored"
+                    />
+                </ParentElement>
             </Provider>
         </>
     )
 }
+
 export default MyApp

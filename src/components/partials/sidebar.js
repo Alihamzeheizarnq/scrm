@@ -1,10 +1,12 @@
 import Link from 'next/link'
 import { memo, useState } from 'react'
+import { connect } from 'react-redux'
+import { openSidebarRightSet } from '../../state/theme/action'
 import ActiveLink from '../utils/ActiveLink'
 import { OpenMenu } from '../utils/ActiveNav'
 
-const SideBar = () => {
-    const [expanded, setExpanded] = useState(false)
+const SideBar = ({ SetSidebarToggle, getSidebar }) => {
+    const [expanded, setExpanded] = useState(true)
 
     const handleSideBar = (e) => {
         if (e.target.tagName == 'A' || e.target.parentElement.tagName == 'A') {
@@ -40,7 +42,7 @@ const SideBar = () => {
             let number = 0
             for (const iterator of ul.children) {
                 if (number != index) {
-                    iterator.classList.remove('open', 'has-sub')
+                    iterator.classList.remove('open', 'has-sub' , 'sidebar-group-active')
                     if (iterator.querySelector('.icon-tab')) {
                         iterator
                             .querySelector('.icon-tab')
@@ -56,22 +58,24 @@ const SideBar = () => {
     }
 
     const setExpandedFunction = (bool) => {
-        setExpanded(bool)
-
-        if (bool) {
-            const menuMin = document.querySelector('.menu-collapsed-open')
-            if (menuMin) {
-                menuMin.classList.add('open')
-                menuMin.classList.remove('menu-collapsed-open')
-            }
-        } else {
-            const menuOpen = document.querySelector('.open')
-            if (menuOpen) {
-                menuOpen.classList.add('menu-collapsed-open')
-                menuOpen.classList.remove('open')
+        if (getSidebar) {
+            setExpanded(bool)
+            if (bool) {
+                const menuMin = document.querySelector('.menu-collapsed-open')
+                if (menuMin) {
+                    menuMin.classList.add('open')
+                    menuMin.classList.remove('menu-collapsed-open')
+                }
+            } else {
+                const menuOpen = document.querySelector('.open')
+                if (menuOpen) {
+                    menuOpen.classList.add('menu-collapsed-open')
+                    menuOpen.classList.remove('open')
+                }
             }
         }
     }
+
     return (
         <>
             <div
@@ -108,9 +112,7 @@ const SideBar = () => {
                                     className="toggle-icon bx-disc font-medium-4 d-none d-xl-block collapse-toggle-icon primary bx"
                                     data-ticon="bx-disc"
                                     onClick={(e) =>
-                                        document.body.classList.toggle(
-                                            'menu-collapsed',
-                                        )
+                                        SetSidebarToggle(!getSidebar)
                                     }
                                 />
                             </a>
@@ -145,7 +147,7 @@ const SideBar = () => {
                                 >
                                     کاربران
                                 </span>
-                                {expanded ? (
+                                { expanded  ? (
                                     <i
                                         className="icon-tab bx bx-chevron-down"
                                         style={{ marginLeft: -8 }}
@@ -179,6 +181,27 @@ const SideBar = () => {
                                         </a>
                                     </Link>
                                 </li>
+                          
+                            </ul>
+                        </li>
+                        <li className="nav-item nav-item all-tab-user ">
+                            <a href={true} onClick={handleSideBar}>
+                                <i className="bx bx-building" />
+                                <span
+                                    className="menu-title"
+                                    style={{ flexGrow: 1 }}
+                                    data-i18n="Starter kit"
+                                >
+                                    کاربران
+                                </span>
+                                { expanded  ? (
+                                    <i
+                                        className="icon-tab bx bx-chevron-down"
+                                        style={{ marginLeft: -8 }}
+                                    />
+                                ) : null}
+                            </a>
+                            <ul className="menu-content">
                                 <li>
                                     <Link href="/users/category">
                                         <a>
@@ -192,6 +215,161 @@ const SideBar = () => {
                                         </a>
                                     </Link>
                                 </li>
+                                <li>
+                                    <Link href="/users/category">
+                                        <a>
+                                            <i className="bx bx-left-arrow-alt" />
+                                            <span
+                                                className="menu-item"
+                                                data-i18n="1 column"
+                                            >
+                                                دسته بندی
+                                            </span>
+                                        </a>
+                                    </Link>
+                                </li>
+                          
+                            </ul>
+                        </li>
+                        <li className="nav-item nav-item all-tab-user ">
+                            <a href={true} onClick={handleSideBar}>
+                                <i className="bx bx-building" />
+                                <span
+                                    className="menu-title"
+                                    style={{ flexGrow: 1 }}
+                                    data-i18n="Starter kit"
+                                >
+                                    کاربران
+                                </span>
+                                { expanded  ? (
+                                    <i
+                                        className="icon-tab bx bx-chevron-down"
+                                        style={{ marginLeft: -8 }}
+                                    />
+                                ) : null}
+                            </a>
+                            <ul className="menu-content">
+                                <li>
+                                    <Link href="/users/category">
+                                        <a>
+                                            <i className="bx bx-left-arrow-alt" />
+                                            <span
+                                                className="menu-item"
+                                                data-i18n="1 column"
+                                            >
+                                                دسته بندی
+                                            </span>
+                                        </a>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/users/category">
+                                        <a>
+                                            <i className="bx bx-left-arrow-alt" />
+                                            <span
+                                                className="menu-item"
+                                                data-i18n="1 column"
+                                            >
+                                                دسته بندی
+                                            </span>
+                                        </a>
+                                    </Link>
+                                </li>
+                          
+                            </ul>
+                        </li>
+                        <li className="nav-item nav-item all-tab-user ">
+                            <a href={true} onClick={handleSideBar}>
+                                <i className="bx bx-building" />
+                                <span
+                                    className="menu-title"
+                                    style={{ flexGrow: 1 }}
+                                    data-i18n="Starter kit"
+                                >
+                                    کاربران
+                                </span>
+                                { expanded  ? (
+                                    <i
+                                        className="icon-tab bx bx-chevron-down"
+                                        style={{ marginLeft: -8 }}
+                                    />
+                                ) : null}
+                            </a>
+                            <ul className="menu-content">
+                                <li>
+                                    <Link href="/users/category">
+                                        <a>
+                                            <i className="bx bx-left-arrow-alt" />
+                                            <span
+                                                className="menu-item"
+                                                data-i18n="1 column"
+                                            >
+                                                دسته بندی
+                                            </span>
+                                        </a>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/users/category">
+                                        <a>
+                                            <i className="bx bx-left-arrow-alt" />
+                                            <span
+                                                className="menu-item"
+                                                data-i18n="1 column"
+                                            >
+                                                دسته بندی
+                                            </span>
+                                        </a>
+                                    </Link>
+                                </li>
+                          
+                            </ul>
+                        </li>
+                        <li className="nav-item nav-item all-tab-user ">
+                            <a href={true} onClick={handleSideBar}>
+                                <i className="bx bx-building" />
+                                <span
+                                    className="menu-title"
+                                    style={{ flexGrow: 1 }}
+                                    data-i18n="Starter kit"
+                                >
+                                    کاربران
+                                </span>
+                                { expanded  ? (
+                                    <i
+                                        className="icon-tab bx bx-chevron-down"
+                                        style={{ marginLeft: -8 }}
+                                    />
+                                ) : null}
+                            </a>
+                            <ul className="menu-content">
+                                <li>
+                                    <Link href="/users/category">
+                                        <a>
+                                            <i className="bx bx-left-arrow-alt" />
+                                            <span
+                                                className="menu-item"
+                                                data-i18n="1 column"
+                                            >
+                                                دسته بندی
+                                            </span>
+                                        </a>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/users/category">
+                                        <a>
+                                            <i className="bx bx-left-arrow-alt" />
+                                            <span
+                                                className="menu-item"
+                                                data-i18n="1 column"
+                                            >
+                                                دسته بندی
+                                            </span>
+                                        </a>
+                                    </Link>
+                                </li>
+                          
                             </ul>
                         </li>
                     </ul>
@@ -201,4 +379,14 @@ const SideBar = () => {
     )
 }
 
-export default memo(SideBar)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        SetSidebarToggle: (bool) => dispatch(openSidebarRightSet(bool)),
+    }
+}
+
+const getStateToProps = (state) => ({
+    getSidebar: state.theme.get_sidebar,
+})
+
+export default connect(getStateToProps, mapDispatchToProps)(memo(SideBar))

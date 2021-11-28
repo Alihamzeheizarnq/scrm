@@ -12,7 +12,7 @@ let schema = yup.object().shape({
     username: yup.string().required('پر کردن این فیلد الزامی میباشد'),
     password: yup.string().required('پر کردن این فیلد الزامی میباشد'),
 })
-const Login = ({ LoginRequest, showLoding, showLodingfullPage }) => {
+const Login = ({ LoginRequest, showLoding }) => {
     const router = useRouter()
 
 
@@ -31,21 +31,7 @@ const Login = ({ LoginRequest, showLoding, showLodingfullPage }) => {
 
     return (
         <>
-            {showLodingfullPage ? (
-                <main>
-                    <div className="preloader">
-                        <div className="preloader__square" />
-                        <div className="preloader__square" />
-                        <div className="preloader__square" />
-                        <div className="preloader__square" />
-                    </div>
-                    <div className="status">
-                        صبر کنید ...<span className="status__dot">.</span>
-                        <span className="status__dot">.</span>
-                        <span className="status__dot">.</span>
-                    </div>
-                </main>
-            ) : (
+            
                 <>
                     <div className="app-content content">
                         <div className="content-overlay" />
@@ -223,7 +209,7 @@ const Login = ({ LoginRequest, showLoding, showLodingfullPage }) => {
                     </div>
                     {/* END: Content*/}
                 </>
-            )}
+            
         </>
     )
 }
