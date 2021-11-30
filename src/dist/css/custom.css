@@ -151,3 +151,8 @@ html .parent__all_element.bg-full-screen-image {
     overflow: hidden;
 }
 
+.parent__all_element {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}

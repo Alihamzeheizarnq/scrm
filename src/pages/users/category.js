@@ -14,7 +14,7 @@ const App = (props) => {
 
     return (
         <>
-            <div className="content-wrapper px-0 px-md-4">
+            <div className="content-wrapper px-1">
                 <div className="content-header row px-1">
                     <div className="content-header-left col-12 mb-2 mt-1">
                         <div className="row breadcrumbs-top">
