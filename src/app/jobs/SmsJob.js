@@ -1,10 +1,12 @@
 class SmsJob {
-    constructor(number) {
+    constructor(number, message, time) {
         this.number = number
+        this.message = message
+        this.time = time
     }
 
     handle() {
-        console.log(this.number + 'alihamzeehi')
+        console.log(this.number)
     }
 }
 

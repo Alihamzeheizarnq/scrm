@@ -1,22 +1,17 @@
 const Model = require('../models')
 
 class Job {
-    constructor(option = null) {
-        this.delay = option.delay ? option.delay : null
-        this.queue = option.queue ? option.queue : null
-        this.reserved_at = option.reserved_at ? option.reserved_at : null
-    }
-    async dispath(instance) {
+    async dispath(instance, option = null) {
         const className = instance.constructor.name
         const payload = this.serialize(instance)
 
         try {
             await Model.Job.create({
-                queue: this.queue,
-                available_at: this.delay,
+                queue: option.queue ? option.queue : null,
+                available_at: option.delay ? option.delay : null,
                 class: className,
                 payload: payload,
-                reserved_at: this.reserved_at,
+                reserved_at: option.reserved_at ? option.reserved_at : null,
             })
 
             console.log('success job to database')
@@ -28,13 +23,6 @@ class Job {
     serialize(obj) {
         var str = JSON.stringify(obj)
         return str
-    }
-
-    unserialize(str, theClass) {
-        var instance = new theClass()
-        var serializedObject = JSON.parse(str)
-        Object.assign(instance, serializedObject)
-        return instance
     }
 
     handleJobs(jobs) {

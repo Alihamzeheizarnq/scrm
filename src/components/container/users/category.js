@@ -8,7 +8,7 @@ import * as yup from 'yup'
 import {
     CategoryCreateRequest,
     ShowCategoryModal,
-} from '../../state/category/action'
+} from '../../../state/category/action'
 
 let schema = yup.object().shape({
     title: yup.string().required('پر کردن این فیلد الزامی میباشد'),

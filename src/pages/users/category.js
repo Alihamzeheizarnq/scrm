@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
 
-import CategoryCrate from '../../components/users/category'
+import CategoryCrate from '../../components/container/users/category'
 import {
     CategorySelectRequest,
     ShowCategoryModal,

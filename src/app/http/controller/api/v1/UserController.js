@@ -1,4 +1,5 @@
 const moment = require('moment')
+const EmailJob = require('../../../../jobs/EmailJob')
 const SmsJob = require('../../../../jobs/SmsJob')
 const { CategoryRequest } = require('../../../request/v1/CategoryRequest')
 const categoryTransform = require('../../../transform/v1/categoryTranform.')
@@ -28,8 +29,16 @@ module.exports = new (class UserController extends Controller {
      */
     async category(req, res) {
         try {
-           
-            this.dispathJob(new SmsJob('09221534539'), { delay: moment().add(2, 'minutes').format('YYYY-MM-DD hh:mm') })
+            this.dispathJob(new SmsJob('09221534539', 'hi ali', '60000'), {
+                delay: moment().add(2, 'minutes').format('YYYY-MM-DD hh:mm'),
+                queue: 'users',
+            })
+
+            this.dispathJob(new EmailJob('alihamzehei2017@gmail.com'), {
+                delay: moment().add(2, 'minutes').format('YYYY-MM-DD hh:mm'),
+                queue: 'users',
+            })
+
             const category = await this.model.Category.findAll({
                 where: { type: 'user' },
             })

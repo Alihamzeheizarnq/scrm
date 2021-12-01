@@ -9,7 +9,9 @@ const ParenrElement = ({ children, ...props }) => {
 
     useEffect(() => {
         if (router.route == '/login') {
-            setClassName(`boxicon-layout no-card-shadow 1-column blank-page bg-full-screen-image`)
+            setClassName(
+                `boxicon-layout no-card-shadow 1-column blank-page bg-full-screen-image`,
+            )
         } else {
             setClassName(
                 `parent__all_element vertical-layout vertical-menu-modern navbar-sticky  ${
@@ -19,9 +21,8 @@ const ParenrElement = ({ children, ...props }) => {
         }
     }, [router, props.get_sidebar])
 
-
     return (
-        <div className={className && className} {...props}>
+        <div className={className} {...props}>
             {children}
         </div>
     )

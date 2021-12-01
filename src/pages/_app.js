@@ -24,24 +24,10 @@ import '../dist/css/loader.css'
 import '../dist/css/custom.css'
 
 import 'react-toastify/dist/ReactToastify.css'
-import { useEffect } from 'react'
 import ParentElement from '../components/ParentElement'
 
 function MyApp({ Component, pageProps }) {
     const router = useRouter()
-    useEffect(() => {
-  
-        if (router.route == '/login') {
-            document.body.setAttribute(
-                'class',
-                '',
-            )
-        }
-    }, [router.route])
-
-
-
-
 
     return (
         <>
@@ -52,7 +38,6 @@ function MyApp({ Component, pageProps }) {
                 </Head>
 
                 <ParentElement>
-
                     {router.route == '/login' ? (
                         <>
                             <Component {...pageProps} />

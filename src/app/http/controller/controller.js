@@ -10,8 +10,9 @@ class Controller {
         }
     }
 
-    dispathJob(instance , option) {
-        return (new Job(option)).dispath(instance).bind(new Job)
+    dispathJob(instance, option) {
+        const job = new Job()
+        job.dispath(instance, option)
     }
 }
 

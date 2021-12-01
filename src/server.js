@@ -4,10 +4,9 @@ const next = require('next')
 const dotEnv = require('dotenv')
 const bodyParser = require('body-parser')
 const session = require('express-session')
-const cron = require('node-cron')
-const moment = require('moment')
+
 const db = require('./app/models')
-const Job = require('./app/jobs')
+const Cron = require('./app/service/cronService')
 
 dotEnv.config({ path: path.resolve('..', '.env') })
 
@@ -17,10 +16,8 @@ const handle = app.getRequestHandler()
 
 app.prepare().then(() => {
     const app = express()
-
-    app.use(bodyParser.json()) // support json encoded bodies
-    app.use(bodyParser.urlencoded({ extended: true })) // support encoded bodies
-
+    app.use(bodyParser.json())
+    app.use(bodyParser.urlencoded({ extended: true }))
     app.use(
         session({
             secret: process.env.SECRET,
@@ -31,50 +28,15 @@ app.prepare().then(() => {
     )
 
     app.use(require('./app/routes/api'))
-
-    app.use((req, res, next) => {
-        req.redirectTo = (route) => {
-            return {
-                redirect: {
-                    destination: route,
-                    permanent: false,
-                },
-            }
-        }
-
-        if (req.session.user) {
-            req.auth = req.session.user
-        }
-
-        next()
-    })
+    app.use(require('./app/middleware/checkAuthMiddleware'))
+    app.use(require('./app/middleware/redirectNextMiddleware'))
 
     app.get('*', (req, res) => {
         handle(req, res)
     })
 
-    let time = cron.schedule(
-        '* * * *  *',
-        async () => {
+    Cron.start()
 
-
-            const jobs = await db.Job.findAll({
-                where : { available_at :  moment().format('YYYY-MM-DD hh:mm')}
-            })
-
-            if(jobs.length){
-                (new Job({})).handleJobs(jobs)
-
-            }
-            console.log(`running`)
-
-        },
-        {
-            scheduled: true,
-            timezone: 'Asia/Tehran',
-        },
-    )
-    time.start()
     db.sequelize
         .authenticate()
         .then(() => {
