@@ -4,8 +4,10 @@ const next = require('next')
 const dotEnv = require('dotenv')
 const bodyParser = require('body-parser')
 const session = require('express-session')
-
+const cron = require('node-cron')
+const moment = require('moment')
 const db = require('./app/models')
+const Job = require('./app/jobs')
 
 dotEnv.config({ path: path.resolve('..', '.env') })
 
@@ -51,6 +53,28 @@ app.prepare().then(() => {
         handle(req, res)
     })
 
+    let time = cron.schedule(
+        '* * * *  *',
+        async () => {
+
+
+            const jobs = await db.Job.findAll({
+                where : { available_at :  moment().format('YYYY-MM-DD hh:mm')}
+            })
+
+            if(jobs.length){
+                (new Job({})).handleJobs(jobs)
+
+            }
+            console.log(`running`)
+
+        },
+        {
+            scheduled: true,
+            timezone: 'Asia/Tehran',
+        },
+    )
+    time.start()
     db.sequelize
         .authenticate()
         .then(() => {
