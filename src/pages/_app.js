@@ -22,8 +22,13 @@ import '../dist/css/vertical-menu.css'
 import '../dist/css/authentication.css'
 import '../dist/css/loader.css'
 import '../dist/css/custom.css'
+import '../dist/css/DataTableDemo.css'
 
 import 'react-toastify/dist/ReactToastify.css'
+
+import 'primereact/resources/themes/lara-light-indigo/theme.css'
+import 'primereact/resources/primereact.min.css'
+import 'primeicons/primeicons.css'
 import ParentElement from '../components/ParentElement'
 
 function MyApp({ Component, pageProps }) {

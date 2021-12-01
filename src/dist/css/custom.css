@@ -156,3 +156,12 @@ html .parent__all_element.bg-full-screen-image {
     flex-direction: column;
     min-height: 100vh;
 }
+.p-datatable .p-datatable-tbody > tr > td {
+    text-align: right !important;
+}
+.datatable-crud-demo {
+    font-family: IRANSansfanum !important;
+}
+.p-datatable-wrapper {
+    font-family: IRANSansfanum !important;
+}
