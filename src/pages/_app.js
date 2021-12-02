@@ -23,6 +23,7 @@ import '../dist/css/authentication.css'
 import '../dist/css/loader.css'
 import '../dist/css/custom.css'
 import '../dist/css/DataTableDemo.css'
+import '../dist/css/app-chat.min.css'
 
 import 'react-toastify/dist/ReactToastify.css'
 

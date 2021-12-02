@@ -14,7 +14,7 @@ const ParenrElement = ({ children, ...props }) => {
             )
         } else {
             setClassName(
-                `parent__all_element vertical-layout vertical-menu-modern navbar-sticky  ${
+                `parent__all_element vertical-layout vertical-menu-modern navbar-sticky chat-application  ${
                     props.get_sidebar ? 'menu-collapsed' : ''
                 }`,
             )
