@@ -1,174 +1,155 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useEffect } from 'react'
+import BootstrapTable from 'react-bootstrap-table-next'
+import paginationFactory from 'react-bootstrap-table2-paginator'
+
 import { connect } from 'react-redux'
-import { classNames } from 'primereact/utils'
-import { DataTable } from 'primereact/datatable'
-import { Column } from 'primereact/column'
-import { Toast } from 'primereact/toast'
-import { Button } from 'primereact/button'
-import { FileUpload } from 'primereact/fileupload'
-import { Rating } from 'primereact/rating'
-import { Toolbar } from 'primereact/toolbar'
-import { InputTextarea } from 'primereact/inputtextarea'
-import { RadioButton } from 'primereact/radiobutton'
-import { InputNumber } from 'primereact/inputnumber'
-import { Dialog } from 'primereact/dialog'
-import { InputText } from 'primereact/inputtext'
-import CategoryCrate from '../../components/container/users/category'
 import {
     CategorySelectRequest,
     ShowCategoryModal,
 } from '../../state/category/action'
+import CategoryCrate from '../../components/container/users/category'
 
-const DataTableCrudDemo = (props) => {
-    let emptyProduct = {
-        id: null,
-        name: '',
-        image: null,
-        description: '',
-        category: null,
-        price: 0,
-        quantity: 0,
-        rating: 0,
-        inventoryStatus: 'INSTOCK',
+function WithMultipleCheckboxes(props) {
+    let ss = () => {
+        return (
+            <button color="danger" onClick={handleDelete}>
+                {' '}
+                Delete{' '}
+            </button>
+        )
     }
 
-    const [selectedProducts, setSelectedProducts] = useState(null)
-    const [globalFilter, setGlobalFilter] = useState(null)
-    const toast = useRef(null)
-    const dt = useRef(null)
+    let handleDelete = (cellContent, row) => {
+        console.log(cellContent, row)
+    }
+
+    const products = props.category
+    const columns = [
+        {
+            dataField: 'id',
+            text: 'آیدی',
+            sort: true,
+            onSort: (field, order) => {
+                console.log(field, order)
+            },
+        },
+        {
+            dataField: 'title',
+            text: 'عنوان',
+            sort: true,
+        },
+        {
+            dataField: 'body',
+            text: 'توضیحات',
+            sort: true,
+        },
+
+        {
+            dataField: 'remove',
+            text: 'Delete',
+            formatter: (cellContent, row) => {
+                return (
+                    <>
+                        <button
+                            className="btn btn-danger btn-xs"
+                            onClick={() => handleDelete(cellContent, row)}
+                        >
+                            Delete
+                        </button>
+                        <button
+                            className="btn btn-success btn-xs"
+                            onClick={() => handleDelete(cellContent, row)}
+                        >
+                            edit
+                        </button>
+                    </>
+                )
+            },
+        },
+    ]
+
+    const rowEvents = {
+        onClick: (e, row, rowIndex) => {
+            console.log(e, row, rowIndex)
+        },
+    }
+    const selectRow = {
+        mode: 'checkbox',
+        nonSelectableClasses: 'my-class',
+        onSelectAll: (isSelect, rows, e) => {
+            console.log(rows)
+        },
+        onSelect: (row, isSelect, rowIndex, e) => {
+            console.log(row, isSelect)
+        },
+    }
 
     useEffect(() => {
         props.CategorySelectRequest()
     }, [])
 
-    const confirmDeleteSelected = () => {
-        setDeleteProductsDialog(true)
-    }
-
-    const leftToolbarTemplate = () => {
-        return (
-            <React.Fragment>
-                <Button
-                    label="ایجاد دسته بندی "
-                    icon="pi pi-plus"
-                    className="p-button-success p-mr-2"
-                    onClick={(e) => props.ShowModal(true)}
-                />
-                <Button
-                    label="حذف"
-                    icon="pi pi-trash"
-                    className="p-button-danger"
-                    onClick={confirmDeleteSelected}
-                    disabled={!selectedProducts || !selectedProducts.length}
-                />
-            </React.Fragment>
-        )
-    }
-
-    const rightToolbarTemplate = () => {
-        return (
-            <React.Fragment>
-                <div className="table-header">
-                    <span className="p-input-icon-left">
-                        <i className="pi pi-search" />
-                        <InputText
-                            type="search"
-                            onInput={(e) => setGlobalFilter(e.target.value)}
-                            placeholder="جستجو"
-                        />
-                    </span>
-                </div>
-            </React.Fragment>
-        )
-    }
-
     return (
-        <div className="content-wrapper px-1">
-            <div className="content-header row px-1">
-                <div className="content-header-left col-12 mb-2 mt-1">
-                    <div className="row breadcrumbs-top">
-                        <div className="col-sm-8">
-                            <h5 className="content-header-title float-left pr-1">
-                                2 ستون
-                            </h5>
-                            <div className="breadcrumb-wrapper">
-                                <ol className="breadcrumb p-0 mb-0">
-                                    <li className="breadcrumb-item">
-                                        <a href="sk-layout-2-columns.html">
-                                            <i className="bx bx-home-alt" />
-                                        </a>
-                                    </li>
-                                    <li className="breadcrumb-item">
-                                        <a href="#">طرح های شروع</a>
-                                    </li>
-                                    <li className="breadcrumb-item active">
-                                        2 ستون
-                                    </li>
-                                </ol>
+        <>
+            <div className="content-wrapper px-1">
+                <div className="content-header row px-1">
+                    <div className="content-header-left col-12 mb-2 mt-1">
+                        <div className="row breadcrumbs-top">
+                            <div className="col-sm-8">
+                                <h5 className="content-header-title float-left pr-1">
+                                    2 ستون
+                                </h5>
+                                <div className="breadcrumb-wrapper">
+                                    <ol className="breadcrumb p-0 mb-0">
+                                        <li className="breadcrumb-item">
+                                            <a href="sk-layout-2-columns.html">
+                                                <i className="bx bx-home-alt" />
+                                            </a>
+                                        </li>
+                                        <li className="breadcrumb-item">
+                                            <a href="#">طرح های شروع</a>
+                                        </li>
+                                        <li className="breadcrumb-item active">
+                                            2 ستون
+                                        </li>
+                                    </ol>
+                                </div>
                             </div>
-                        </div>
-                        <div className="col-sm-4" style={{ textAlign: 'left' }}>
-                            <button
-                                type="button"
-                                onClick={(e) => props.ShowModal(true)}
-                                className="btn btn-success glow flot-left"
+                            <div
+                                className="col-sm-4"
+                                style={{ textAlign: 'left' }}
                             >
-                                <i className="bx bx-plus" />
-                                <span className="align-middle ml-25">
-                                    ایجاد دسته بندی
-                                </span>
-                            </button>
+                                <button
+                                    type="button"
+                                    onClick={(e) => props.ShowModal(true)}
+                                    className="btn btn-success glow flot-left"
+                                >
+                                    <i className="bx bx-plus" />
+                                    <span className="align-middle ml-25">
+                                        ایجاد دسته بندی
+                                    </span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="datatable-crud-demo">
-                <Toast ref={toast} />
-
-                <div className="card">
-                    <Toolbar
-                        className="p-mb-4"
-                        right={leftToolbarTemplate}
-                        left={rightToolbarTemplate}
-                    ></Toolbar>
-
-                    <DataTable
-                        ref={dt}
-                        value={props.category}
-                        selection={selectedProducts}
-                        onSelectionChange={(e) => setSelectedProducts(e.value)}
-                        dataKey="id"
-                        paginator
-                        rows={10}
-                        rowsPerPageOptions={[5, 10, 25]}
-                        paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-                        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products"
-                        globalFilter={globalFilter}
-                        responsiveLayout="scroll"
-                    >
-                        <Column
-                            selectionMode="multiple"
-                            headerStyle={{ width: '3rem' }}
-                            exportable={false}
-                        ></Column>
-
-                        <Column
-                            field="title"
-                            header="عنوان"
-                            sortable
-                            headerStyle={{ textAlign: 'right' }}
-                        ></Column>
-                        <Column
-                            field="body"
-                            header="توضیحات"
-                            sortable
-                            headerStyle={{ textAlign: 'right' }}
-                        ></Column>
-                    </DataTable>
+                <div className="content-body">
+                    <section id="description" className="card p-1">
+                        <BootstrapTable
+                            keyField="id"
+                            data={products}
+                            columns={columns}
+                            rowEvents={rowEvents}
+                            selectRow={selectRow}
+                            loading={true}
+                            bordered={false}
+                            hover={true}
+                            pagination={paginationFactory()}
+                        />
+                    </section>
                 </div>
             </div>
             <CategoryCrate />
-        </div>
+        </>
     )
 }
 export async function getServerSideProps({ req }) {
@@ -190,5 +171,7 @@ const getStateToProps = (state) => ({
     category: state.category.category,
     created: state.category.created,
 })
-
-export default connect(getStateToProps, mapDispatchToProps)(DataTableCrudDemo)
+export default connect(
+    getStateToProps,
+    mapDispatchToProps,
+)(WithMultipleCheckboxes)

@@ -54,6 +54,7 @@ const reducer = (state = initState, action) => {
             }
 
         case SHOW_CATEGORY_MODAL:
+            console.log(action.payload);
             return {
                 ...state,
                 showModel: action.payload,

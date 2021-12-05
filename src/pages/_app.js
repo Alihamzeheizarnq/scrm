@@ -27,9 +27,10 @@ import '../dist/css/app-chat.min.css'
 
 import 'react-toastify/dist/ReactToastify.css'
 
-import 'primereact/resources/themes/lara-light-indigo/theme.css'
-import 'primereact/resources/primereact.min.css'
-import 'primeicons/primeicons.css'
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
+
 import ParentElement from '../components/ParentElement'
 
 function MyApp({ Component, pageProps }) {
