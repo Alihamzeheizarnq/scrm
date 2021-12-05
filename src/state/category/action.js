@@ -6,6 +6,9 @@ import {
     CATEGORY_SELECT_SUCCESS_REQUEST,
     CATEGORY_SELECT_ERROR,
     SHOW_CATEGORY_MODAL,
+    CATEGORY_LIST_DELETE_ADD,
+    CATEGORY_LIST_DELETE,
+    CATEGORY_LIST_DELETE_CLEAR,
 } from './action-type'
 
 export const CategoryCreateRequest = (data) => ({
@@ -36,4 +39,17 @@ export const CategorySelectError = (error) => ({
 export const ShowCategoryModal = (bool) => ({
     type: SHOW_CATEGORY_MODAL,
     payload: bool,
+})
+export const CategoryListDelete = (id) => ({
+    type: CATEGORY_LIST_DELETE,
+    payload: id,
+})
+export const CategoryListDeleteAdd = (id, bool) => ({
+    type: CATEGORY_LIST_DELETE_ADD,
+    payload: id,
+    status: bool,
+})
+export const CategoryListDeleteClear = (id) => ({
+    type: CATEGORY_LIST_DELETE_CLEAR,
+    payload: id,
 })

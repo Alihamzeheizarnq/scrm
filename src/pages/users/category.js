@@ -2,15 +2,14 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import {
+    CategoryListDeleteAdd,
     CategorySelectRequest,
     ShowCategoryModal,
 } from '../../state/category/action'
 import CategoryCrate from '../../components/container/users/category'
-import { useRouter } from 'next/router'
 import DataTable from '../../components/DataTabl'
 
 function WithMultipleCheckboxes(props) {
-    const router = useRouter()
     let handleDelete = (cellContent, row) => {
         console.log(cellContent, row)
     }
@@ -58,10 +57,18 @@ function WithMultipleCheckboxes(props) {
     ]
 
     const SelectAll = (args) => {
-        console.log(args)
+        if (args.isSelect) {
+            args.rows.map((item) => props.CategoryDeleteAddList(item.id, true))
+        } else {
+            args.rows.map((item) => props.CategoryDeleteAddList(item.id, false))
+        }
     }
     const Select = (args) => {
-        console.log(args)
+        if (args.isSelect) {
+            props.CategoryDeleteAddList(args.row.id, true)
+        } else {
+            props.CategoryDeleteAddList(args.row.id, false)
+        }
     }
     const pageChage = (args) => {
         console.log(args)
@@ -99,6 +106,18 @@ function WithMultipleCheckboxes(props) {
                                 className="col-sm-4"
                                 style={{ textAlign: 'left' }}
                             >
+                                {props.delete.length ? (
+                                    <button
+                                        type="button"
+                                        onClick={(e) => props.ShowModal(true)}
+                                        className="btn btn-danger glow flot-left mx-1"
+                                    >
+                                        <i className="bx bxs-trash-alt" />
+                                        <span className="align-middle ml-25">
+                                            حذف
+                                        </span>
+                                    </button>
+                                ) : null}
                                 <button
                                     type="button"
                                     onClick={(e) => props.ShowModal(true)}
@@ -142,12 +161,14 @@ const mapDispatchToProps = (dispatch) => {
     return {
         ShowModal: (bool) => dispatch(ShowCategoryModal(bool)),
         CategorySelectRequest: () => dispatch(CategorySelectRequest()),
+        CategoryDeleteAddList: (id, bool) =>
+            dispatch(CategoryListDeleteAdd(id, bool)),
     }
 }
 
 const getStateToProps = (state) => ({
     category: state.category.category,
-    created: state.category.created,
+    delete: state.category.delete,
 })
 export default connect(
     getStateToProps,

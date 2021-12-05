@@ -6,11 +6,18 @@ import axios from 'axios'
 import {
     CategoryCreateError,
     CategoryCreateSuccess,
+    CategoryListDelete,
+    CategoryListDeleteClear,
     CategorySelectError,
     CategorySelectSuccess,
     ShowCategoryModal,
 } from './action'
-import { CATEGORY_CREATE_REQUEST, CATEGORY_SELECT_REQUEST } from './action-type'
+import {
+    CATEGORY_CREATE_REQUEST,
+    CATEGORY_LIST_DELETE,
+    CATEGORY_LIST_DELETE_ADD,
+    CATEGORY_SELECT_REQUEST,
+} from './action-type'
 
 function* createCategory(action) {
     const args = {
@@ -49,8 +56,17 @@ function* selectCategory() {
     }
 }
 
+function* deleteCategory(action) {
+    if (action.status) {
+        yield put(CategoryListDelete(action.payload))
+    } else {
+        yield put(CategoryListDeleteClear(action.payload))
+    }
+    console.log(action)
+}
 function* categorySaga() {
     yield takeEvery(CATEGORY_CREATE_REQUEST, createCategory)
     yield takeEvery(CATEGORY_SELECT_REQUEST, selectCategory)
+    yield takeEvery(CATEGORY_LIST_DELETE_ADD, deleteCategory)
 }
 export default categorySaga

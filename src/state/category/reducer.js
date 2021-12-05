@@ -2,6 +2,9 @@ import {
     CATEGORY_CREATE_ERROR,
     CATEGORY_CREATE_REQUEST,
     CATEGORY_CREATE_SUCCESS_REQUEST,
+    CATEGORY_LIST_DELETE,
+    CATEGORY_LIST_DELETE_ADD,
+    CATEGORY_LIST_DELETE_CLEAR,
     CATEGORY_SELECT_ERROR,
     CATEGORY_SELECT_REQUEST,
     CATEGORY_SELECT_SUCCESS_REQUEST,
@@ -13,6 +16,7 @@ const initState = {
     category: [],
     errro: null,
     showModel: false,
+    delete: [],
 }
 
 const reducer = (state = initState, action) => {
@@ -27,6 +31,7 @@ const reducer = (state = initState, action) => {
 
         case CATEGORY_CREATE_SUCCESS_REQUEST:
             return {
+                ...state,
                 category: [...state.category, action.payload],
                 data: null,
                 error: null,
@@ -41,6 +46,7 @@ const reducer = (state = initState, action) => {
 
         case CATEGORY_SELECT_SUCCESS_REQUEST:
             return {
+                ...state,
                 data: null,
                 category: action.payload,
                 error: [],
@@ -48,16 +54,27 @@ const reducer = (state = initState, action) => {
 
         case CATEGORY_SELECT_ERROR:
             return {
+                ...state,
                 data: null,
                 category: [],
                 error: action.payload,
             }
 
         case SHOW_CATEGORY_MODAL:
-            console.log(action.payload);
             return {
                 ...state,
                 showModel: action.payload,
+            }
+        case CATEGORY_LIST_DELETE:
+            console.log(action)
+            return {
+                ...state,
+                delete: [...state.delete, action.payload],
+            }
+        case CATEGORY_LIST_DELETE_CLEAR:
+            return {
+                ...state,
+                delete: state.delete.filter((item) => item != action.payload),
             }
         default:
             return state
