@@ -1,38 +1,25 @@
 import React, { useEffect } from 'react'
-import BootstrapTable from 'react-bootstrap-table-next'
-import paginationFactory from 'react-bootstrap-table2-paginator'
-
 import { connect } from 'react-redux'
+
 import {
     CategorySelectRequest,
     ShowCategoryModal,
 } from '../../state/category/action'
 import CategoryCrate from '../../components/container/users/category'
+import { useRouter } from 'next/router'
+import DataTable from '../../components/DataTabl'
 
 function WithMultipleCheckboxes(props) {
-    let ss = () => {
-        return (
-            <button color="danger" onClick={handleDelete}>
-                {' '}
-                Delete{' '}
-            </button>
-        )
-    }
-
+    const router = useRouter()
     let handleDelete = (cellContent, row) => {
         console.log(cellContent, row)
     }
+    useEffect(() => {
+        props.CategorySelectRequest()
+    }, [])
 
-    const products = props.category
+    const data = props.category
     const columns = [
-        {
-            dataField: 'id',
-            text: 'آیدی',
-            sort: true,
-            onSort: (field, order) => {
-                console.log(field, order)
-            },
-        },
         {
             dataField: 'title',
             text: 'عنوان',
@@ -50,44 +37,38 @@ function WithMultipleCheckboxes(props) {
             formatter: (cellContent, row) => {
                 return (
                     <>
-                        <button
-                            className="btn btn-danger btn-xs"
+                        <a
+                            href={true}
+                            className="tag-a-user"
                             onClick={() => handleDelete(cellContent, row)}
                         >
-                            Delete
-                        </button>
-                        <button
-                            className="btn btn-success btn-xs"
+                            <i class="badge-circle badge-circle-light-secondary bx bxs-trash-alt font-medium-1"></i>
+                        </a>
+                        <a
+                            href={true}
+                            className="tag-a-user"
                             onClick={() => handleDelete(cellContent, row)}
                         >
-                            edit
-                        </button>
+                            <i class="badge-circle badge-circle-light-secondary bx bx-pencil font-medium-1"></i>
+                        </a>
                     </>
                 )
             },
         },
     ]
 
-    const rowEvents = {
-        onClick: (e, row, rowIndex) => {
-            console.log(e, row, rowIndex)
-        },
+    const SelectAll = (args) => {
+        console.log(args)
     }
-    const selectRow = {
-        mode: 'checkbox',
-        nonSelectableClasses: 'my-class',
-        onSelectAll: (isSelect, rows, e) => {
-            console.log(rows)
-        },
-        onSelect: (row, isSelect, rowIndex, e) => {
-            console.log(row, isSelect)
-        },
+    const Select = (args) => {
+        console.log(args)
     }
-
-    useEffect(() => {
-        props.CategorySelectRequest()
-    }, [])
-
+    const pageChage = (args) => {
+        console.log(args)
+    }
+    const pageSizeChage = (args) => {
+        console.log(args)
+    }
     return (
         <>
             <div className="content-wrapper px-1">
@@ -134,16 +115,13 @@ function WithMultipleCheckboxes(props) {
                 </div>
                 <div className="content-body">
                     <section id="description" className="card p-1">
-                        <BootstrapTable
-                            keyField="id"
-                            data={products}
+                        <DataTable
                             columns={columns}
-                            rowEvents={rowEvents}
-                            selectRow={selectRow}
-                            loading={true}
-                            bordered={false}
-                            hover={true}
-                            pagination={paginationFactory()}
+                            data={data}
+                            SelectAll={SelectAll}
+                            Select={Select}
+                            pageSizeChage={pageSizeChage}
+                            pageChage={pageChage}
                         />
                     </section>
                 </div>

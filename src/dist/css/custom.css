@@ -165,6 +165,18 @@ html .parent__all_element.bg-full-screen-image {
 .p-datatable-wrapper {
     font-family: IRANSansfanum !important;
 }
-.chat-application .chat-window-wrapper .chat-container{
-   height: calc(100vh - 20.7rem) !important
+.chat-application .chat-window-wrapper .chat-container {
+    height: calc(100vh - 20.7rem) !important;
+}
+
+.tag-a-user {
+    cursor: pointer;
+}
+.react-bootstrap-table-pagination {
+    display: flex;
+    flex-direction: row-reverse;
+}
+.react-bootstrap-table-pagination-list {
+    display: flex;
+    justify-content: start;
 }
