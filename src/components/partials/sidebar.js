@@ -543,7 +543,7 @@ const SideBar = ({ SetSidebarToggle, getSidebar }) => {
                                     style={{ flexGrow: 1 }}
                                     data-i18n="Starter kit"
                                 >
-                                    تنظبمات
+                                    تنظیمات
                                 </span>
                                 {expanded ? (
                                     <i
