@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { memo, useState } from 'react'
 import { connect } from 'react-redux'
 import { openSidebarRightSet } from '../../state/theme/action'
+import logo from '../../dist/image/s-logo.png'
 import ActiveLink from '../utils/ActiveLink'
 import { OpenMenu } from '../utils/ActiveNav'
 
@@ -42,7 +43,11 @@ const SideBar = ({ SetSidebarToggle, getSidebar }) => {
             let number = 0
             for (const iterator of ul.children) {
                 if (number != index) {
-                    iterator.classList.remove('open', 'has-sub' , 'sidebar-group-active')
+                    iterator.classList.remove(
+                        'open',
+                        'has-sub',
+                        'sidebar-group-active',
+                    )
                     if (iterator.querySelector('.icon-tab')) {
                         iterator
                             .querySelector('.icon-tab')
@@ -89,17 +94,11 @@ const SideBar = ({ SetSidebarToggle, getSidebar }) => {
                 <div className="navbar-header">
                     <ul className="nav navbar-nav flex-row">
                         <li className="nav-item mr-auto">
-                            <a
-                                className="navbar-brand"
-                                href="../../html/vertical-menu-boxicons-template/index.html"
-                            >
+                            <a className="navbar-brand" href={true}>
                                 <div className="brand-logo">
-                                    <img
-                                        className="logo"
-                                        src="../../assets/images/logo/logo.png"
-                                    />
+                                    <img className="logo" src={logo.src} />
                                 </div>
-                                <h2 className="brand-text mb-0">Frest</h2>
+                                <h2 className="brand-text mb-0">Scrm</h2>
                             </a>
                         </li>
                         <li className="nav-item nav-toggle">
@@ -137,9 +136,20 @@ const SideBar = ({ SetSidebarToggle, getSidebar }) => {
                                 </a>
                             </Link>
                         </li>
+
+                        <li className="nav-item">
+                            <Link href="/">
+                                <a onClick={handleSideBar}>
+                                    <i className="bx bxs-conversation"></i>
+                                    <span className="menu-title" data-i18n>
+                                        گفتگو
+                                    </span>
+                                </a>
+                            </Link>
+                        </li>
                         <li className="nav-item nav-item all-tab-user ">
                             <a href={true} onClick={handleSideBar}>
-                                <i className="bx bx-building" />
+                                <i class="bx bx-user"></i>
                                 <span
                                     className="menu-title"
                                     style={{ flexGrow: 1 }}
@@ -147,7 +157,7 @@ const SideBar = ({ SetSidebarToggle, getSidebar }) => {
                                 >
                                     کاربران
                                 </span>
-                                { expanded  ? (
+                                {expanded ? (
                                     <i
                                         className="icon-tab bx bx-chevron-down"
                                         style={{ marginLeft: -8 }}
@@ -181,20 +191,19 @@ const SideBar = ({ SetSidebarToggle, getSidebar }) => {
                                         </a>
                                     </Link>
                                 </li>
-                          
                             </ul>
                         </li>
                         <li className="nav-item nav-item all-tab-user ">
                             <a href={true} onClick={handleSideBar}>
-                                <i className="bx bx-building" />
+                                <i class="bx bx-transfer"></i>
                                 <span
                                     className="menu-title"
                                     style={{ flexGrow: 1 }}
                                     data-i18n="Starter kit"
                                 >
-                                    کاربران
+                                    معاملات
                                 </span>
-                                { expanded  ? (
+                                {expanded ? (
                                     <i
                                         className="icon-tab bx bx-chevron-down"
                                         style={{ marginLeft: -8 }}
@@ -210,7 +219,7 @@ const SideBar = ({ SetSidebarToggle, getSidebar }) => {
                                                 className="menu-item"
                                                 data-i18n="1 column"
                                             >
-                                                دسته بندی
+                                                لیست معملات
                                             </span>
                                         </a>
                                     </Link>
@@ -223,25 +232,24 @@ const SideBar = ({ SetSidebarToggle, getSidebar }) => {
                                                 className="menu-item"
                                                 data-i18n="1 column"
                                             >
-                                                دسته بندی
+                                                افزودن معامله جدید
                                             </span>
                                         </a>
                                     </Link>
                                 </li>
-                          
                             </ul>
                         </li>
                         <li className="nav-item nav-item all-tab-user ">
                             <a href={true} onClick={handleSideBar}>
-                                <i className="bx bx-building" />
+                                <i class="bx bxs-briefcase"></i>
                                 <span
                                     className="menu-title"
                                     style={{ flexGrow: 1 }}
                                     data-i18n="Starter kit"
                                 >
-                                    کاربران
+                                    کارها
                                 </span>
-                                { expanded  ? (
+                                {expanded ? (
                                     <i
                                         className="icon-tab bx bx-chevron-down"
                                         style={{ marginLeft: -8 }}
@@ -257,7 +265,7 @@ const SideBar = ({ SetSidebarToggle, getSidebar }) => {
                                                 className="menu-item"
                                                 data-i18n="1 column"
                                             >
-                                                دسته بندی
+                                                لیست کارها
                                             </span>
                                         </a>
                                     </Link>
@@ -270,25 +278,24 @@ const SideBar = ({ SetSidebarToggle, getSidebar }) => {
                                                 className="menu-item"
                                                 data-i18n="1 column"
                                             >
-                                                دسته بندی
+                                                ایجاد کار
                                             </span>
                                         </a>
                                     </Link>
                                 </li>
-                          
                             </ul>
                         </li>
                         <li className="nav-item nav-item all-tab-user ">
                             <a href={true} onClick={handleSideBar}>
-                                <i className="bx bx-building" />
+                                <i class="bx bxl-slack-old"></i>
                                 <span
                                     className="menu-title"
                                     style={{ flexGrow: 1 }}
                                     data-i18n="Starter kit"
                                 >
-                                    کاربران
+                                    فعالیت ها
                                 </span>
-                                { expanded  ? (
+                                {expanded ? (
                                     <i
                                         className="icon-tab bx bx-chevron-down"
                                         style={{ marginLeft: -8 }}
@@ -304,7 +311,7 @@ const SideBar = ({ SetSidebarToggle, getSidebar }) => {
                                                 className="menu-item"
                                                 data-i18n="1 column"
                                             >
-                                                دسته بندی
+                                                لیست فعالیت ها
                                             </span>
                                         </a>
                                     </Link>
@@ -317,25 +324,24 @@ const SideBar = ({ SetSidebarToggle, getSidebar }) => {
                                                 className="menu-item"
                                                 data-i18n="1 column"
                                             >
-                                                دسته بندی
+                                                ایجاد فعالیت
                                             </span>
                                         </a>
                                     </Link>
                                 </li>
-                          
                             </ul>
                         </li>
                         <li className="nav-item nav-item all-tab-user ">
                             <a href={true} onClick={handleSideBar}>
-                                <i className="bx bx-building" />
+                                <i class="bx bxs-factory"></i>
                                 <span
                                     className="menu-title"
                                     style={{ flexGrow: 1 }}
                                     data-i18n="Starter kit"
                                 >
-                                    کاربران
+                                    شرکت ها
                                 </span>
-                                { expanded  ? (
+                                {expanded ? (
                                     <i
                                         className="icon-tab bx bx-chevron-down"
                                         style={{ marginLeft: -8 }}
@@ -351,7 +357,7 @@ const SideBar = ({ SetSidebarToggle, getSidebar }) => {
                                                 className="menu-item"
                                                 data-i18n="1 column"
                                             >
-                                                دسته بندی
+                                                لیست شرکت ها
                                             </span>
                                         </a>
                                     </Link>
@@ -364,12 +370,202 @@ const SideBar = ({ SetSidebarToggle, getSidebar }) => {
                                                 className="menu-item"
                                                 data-i18n="1 column"
                                             >
-                                                دسته بندی
+                                                ایجاد شرکت
                                             </span>
                                         </a>
                                     </Link>
                                 </li>
-                          
+                            </ul>
+                        </li>
+                        <li className="nav-item nav-item all-tab-user ">
+                            <a href={true} onClick={handleSideBar}>
+                                <i class="bx bx-notepad"></i>
+                                <span
+                                    className="menu-title"
+                                    style={{ flexGrow: 1 }}
+                                    data-i18n="Starter kit"
+                                >
+                                    یادداشت ها
+                                </span>
+                                {expanded ? (
+                                    <i
+                                        className="icon-tab bx bx-chevron-down"
+                                        style={{ marginLeft: -8 }}
+                                    />
+                                ) : null}
+                            </a>
+                            <ul className="menu-content">
+                                <li>
+                                    <Link href="/users/category">
+                                        <a>
+                                            <i className="bx bx-left-arrow-alt" />
+                                            <span
+                                                className="menu-item"
+                                                data-i18n="1 column"
+                                            >
+                                                لیست یادداشت ها
+                                            </span>
+                                        </a>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/users/category">
+                                        <a>
+                                            <i className="bx bx-left-arrow-alt" />
+                                            <span
+                                                className="menu-item"
+                                                data-i18n="1 column"
+                                            >
+                                                ایجاد یادداشت
+                                            </span>
+                                        </a>
+                                    </Link>
+                                </li>
+                            </ul>
+                        </li>
+                        <li className="nav-item nav-item all-tab-user ">
+                            <a href={true} onClick={handleSideBar}>
+                                <i class="bx bxs-message"></i>
+                                <span
+                                    className="menu-title"
+                                    style={{ flexGrow: 1 }}
+                                    data-i18n="Starter kit"
+                                >
+                                    پیامک ها
+                                </span>
+                                {expanded ? (
+                                    <i
+                                        className="icon-tab bx bx-chevron-down"
+                                        style={{ marginLeft: -8 }}
+                                    />
+                                ) : null}
+                            </a>
+                            <ul className="menu-content">
+                                <li>
+                                    <Link href="/users/category">
+                                        <a>
+                                            <i className="bx bx-left-arrow-alt" />
+                                            <span
+                                                className="menu-item"
+                                                data-i18n="1 column"
+                                            >
+                                                لیست پیامک ها
+                                            </span>
+                                        </a>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/users/category">
+                                        <a>
+                                            <i className="bx bx-left-arrow-alt" />
+                                            <span
+                                                className="menu-item"
+                                                data-i18n="1 column"
+                                            >
+                                                ارسال پیامک
+                                            </span>
+                                        </a>
+                                    </Link>
+                                </li>
+                            </ul>
+                        </li>
+                        <li className="nav-item nav-item all-tab-user ">
+                            <a href={true} onClick={handleSideBar}>
+                                <i class="bx bxs-book-content"></i>
+                                <span
+                                    className="menu-title"
+                                    style={{ flexGrow: 1 }}
+                                    data-i18n="Starter kit"
+                                >
+                                    فاکتور ها
+                                </span>
+                                {expanded ? (
+                                    <i
+                                        className="icon-tab bx bx-chevron-down"
+                                        style={{ marginLeft: -8 }}
+                                    />
+                                ) : null}
+                            </a>
+                            <ul className="menu-content">
+                                <li>
+                                    <Link href="/users/category">
+                                        <a>
+                                            <i className="bx bx-left-arrow-alt" />
+                                            <span
+                                                className="menu-item"
+                                                data-i18n="1 column"
+                                            >
+                                                لیست فاکتور ها
+                                            </span>
+                                        </a>
+                                    </Link>
+                                </li>
+                            </ul>
+                        </li>
+                        <li className="nav-item nav-item all-tab-user ">
+                            <a href={true} onClick={handleSideBar}>
+                                <i class="bx bxs-report"></i>
+                                <span
+                                    className="menu-title"
+                                    style={{ flexGrow: 1 }}
+                                    data-i18n="Starter kit"
+                                >
+                                    گزارشات
+                                </span>
+                                {expanded ? (
+                                    <i
+                                        className="icon-tab bx bx-chevron-down"
+                                        style={{ marginLeft: -8 }}
+                                    />
+                                ) : null}
+                            </a>
+                            <ul className="menu-content">
+                                <li>
+                                    <Link href="/users/category">
+                                        <a>
+                                            <i className="bx bx-left-arrow-alt" />
+                                            <span
+                                                className="menu-item"
+                                                data-i18n="1 column"
+                                            >
+                                                لیست گزارشات
+                                            </span>
+                                        </a>
+                                    </Link>
+                                </li>
+                            </ul>
+                        </li>
+                        <li className="nav-item nav-item all-tab-user ">
+                            <a href={true} onClick={handleSideBar}>
+                                <i class="bx bx-reset"></i>
+                                <span
+                                    className="menu-title"
+                                    style={{ flexGrow: 1 }}
+                                    data-i18n="Starter kit"
+                                >
+                                    تنظبمات
+                                </span>
+                                {expanded ? (
+                                    <i
+                                        className="icon-tab bx bx-chevron-down"
+                                        style={{ marginLeft: -8 }}
+                                    />
+                                ) : null}
+                            </a>
+                            <ul className="menu-content">
+                                <li>
+                                    <Link href="/users/category">
+                                        <a>
+                                            <i className="bx bx-left-arrow-alt" />
+                                            <span
+                                                className="menu-item"
+                                                data-i18n="1 column"
+                                            >
+                                                تنظیمات
+                                            </span>
+                                        </a>
+                                    </Link>
+                                </li>
                             </ul>
                         </li>
                     </ul>
