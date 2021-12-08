@@ -52,4 +52,5 @@ app.prepare().then(() => {
 
             process.exit(2)
         })
+    module.exports = app
 })
