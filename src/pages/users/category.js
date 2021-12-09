@@ -2,16 +2,22 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import {
+    CategoryEditData,
     CategoryListDeleteAdd,
     CategorySelectRequest,
     ShowCategoryModal,
+    ShowModalDeleteOpen,
+    ShowModalEditOpen,
 } from '../../state/category/action'
 import CategoryCrate from '../../components/container/users/category'
+import CategoryDelete from '../../components/container/users/delete-category'
+import CategoryEdit from '../../components/container/users/edit-category'
 import DataTable from '../../components/DataTabl'
 
 function WithMultipleCheckboxes(props) {
     let handleDelete = (cellContent, row) => {
-        console.log(cellContent, row)
+        props.editModal(true)
+        props.editData(row)
     }
     useEffect(() => {
         props.CategorySelectRequest()
@@ -32,17 +38,10 @@ function WithMultipleCheckboxes(props) {
 
         {
             dataField: 'remove',
-            text: 'Delete',
+            text: 'عملیات',
             formatter: (cellContent, row) => {
                 return (
                     <>
-                        <a
-                            href={true}
-                            className="tag-a-user"
-                            onClick={() => handleDelete(cellContent, row)}
-                        >
-                            <i class="badge-circle badge-circle-light-secondary bx bxs-trash-alt font-medium-1"></i>
-                        </a>
                         <a
                             href={true}
                             className="tag-a-user"
@@ -109,7 +108,7 @@ function WithMultipleCheckboxes(props) {
                                 {props.delete.length ? (
                                     <button
                                         type="button"
-                                        onClick={(e) => props.ShowModal(true)}
+                                        onClick={(e) => props.DeleteModal(true)}
                                         className="btn btn-danger glow flot-left mx-1"
                                     >
                                         <i className="bx bxs-trash-alt" />
@@ -146,6 +145,8 @@ function WithMultipleCheckboxes(props) {
                 </div>
             </div>
             <CategoryCrate />
+            <CategoryDelete />
+            <CategoryEdit />
         </>
     )
 }
@@ -160,6 +161,9 @@ export async function getServerSideProps({ req }) {
 const mapDispatchToProps = (dispatch) => {
     return {
         ShowModal: (bool) => dispatch(ShowCategoryModal(bool)),
+        editData: (data) => dispatch(CategoryEditData(data)),
+        editModal: (bool) => dispatch(ShowModalEditOpen(bool)),
+        DeleteModal: (bool) => dispatch(ShowModalDeleteOpen(bool)),
         CategorySelectRequest: () => dispatch(CategorySelectRequest()),
         CategoryDeleteAddList: (id, bool) =>
             dispatch(CategoryListDeleteAdd(id, bool)),

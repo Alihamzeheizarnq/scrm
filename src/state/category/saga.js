@@ -6,14 +6,21 @@ import axios from 'axios'
 import {
     CategoryCreateError,
     CategoryCreateSuccess,
+    CategoryDeleteError,
+    CategoryDeleteSuccess,
+    CategoryEditSuccess,
     CategoryListDelete,
     CategoryListDeleteClear,
     CategorySelectError,
+    CategorySelectRequest,
     CategorySelectSuccess,
     ShowCategoryModal,
+    ShowModalEditOpen,
 } from './action'
 import {
     CATEGORY_CREATE_REQUEST,
+    CATEGORY_DELETE_REQUEST,
+    CATEGORY_EDIT_REQUEST,
     CATEGORY_LIST_DELETE_ADD,
     CATEGORY_SELECT_REQUEST,
 } from './action-type'
@@ -63,9 +70,46 @@ function* deleteCategory(action) {
     }
     console.log(action)
 }
+
+function* deleteCategoryServer(action) {
+    const args = {
+        method: 'DELETE',
+        url: '/v1/users/category/delete',
+        data: action.payload,
+    }
+    try {
+        const status = yield call(axios, args)
+
+        if (status.data.status) {
+            yield put(CategoryDeleteSuccess(action.payload))
+            yield put(CategorySelectRequest())
+            yield toast.warning('دسته بندی با موفقیت  حذف گردید')
+        }
+    } catch (error) {
+        yield put(CategoryDeleteError(error))
+    }
+}
+
+function* editCategoryServer(action) {
+    const args = {
+        method: 'PUT',
+        url: `/v1/users/category/edit/${action.payload.id}`,
+        data: action.payload,
+    }
+    try {
+        const category = yield call(axios, args);
+
+        yield put(CategoryEditSuccess(action.payload));
+        yield put(ShowModalEditOpen(false));
+        yield toast.success('دسته بندی با موفقیت  ویرایش گردید')
+
+    } catch (error) {}
+}
 function* categorySaga() {
     yield takeEvery(CATEGORY_CREATE_REQUEST, createCategory)
     yield takeEvery(CATEGORY_SELECT_REQUEST, selectCategory)
     yield takeEvery(CATEGORY_LIST_DELETE_ADD, deleteCategory)
+    yield takeEvery(CATEGORY_DELETE_REQUEST, deleteCategoryServer)
+    yield takeEvery(CATEGORY_EDIT_REQUEST, editCategoryServer)
 }
 export default categorySaga
