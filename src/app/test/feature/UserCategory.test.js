@@ -1,15 +1,30 @@
+const bcrypt = require('bcrypt')
 const supertest = require('supertest')
-
-const request = supertest('http://localhost:3000')
+const db = require('./../../models')
+const request = supertest('http://localhost:3001')
 
 describe('Test userCategory', () => {
-    let coo = null
+    let auth = null
+
+    beforeAll(async () => {
+        await db.sequelize.sync({ force: true })
+    })
 
     beforeEach(function (done) {
+        db.User.create({
+            firstName: 'ali',
+            lastName: 'hamzehei',
+            email: 'alihamzehei@gmail.com',
+            level: 'super_user',
+            password: bcrypt.hashSync('123456789', bcrypt.genSaltSync(10)),
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        })
+
         request
             .post('/v1/login')
             .send({
-                username: 'alihamzehei2017@gmail.com',
+                username: 'alihamzehei@gmail.com',
                 password: '123456789',
             })
             .expect(200)
@@ -17,23 +32,23 @@ describe('Test userCategory', () => {
                 if (err) {
                     return done(err)
                 }
-                coo = res.header['set-cookie']
-                done()
+                auth = res.header['set-cookie']
+                return done()
             })
     })
-    it('check GET => /users/category page ', () => {
+    test('check GET => /users/category page ', () => {
         request
             .get('/users/category')
-            .set('Cookie', [coo.toString()])
+            .set('Cookie', [auth.toString()])
             .expect(200)
             .end((err, res) => {
                 if (err) throw err
             })
     })
-    it('has user and redirect to /login ', (done) => {
+    test('has user and redirect to /login ', (done) => {
         request
             .get('/login')
-            .set('Cookie', [coo.toString()])
+            .set('Cookie', [auth.toString()])
             .expect('location', '/')
             .expect(307)
             .end((err, res) => {

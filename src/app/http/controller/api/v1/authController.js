@@ -13,6 +13,8 @@ module.exports = new (class authController extends Controller {
             where: { email: data.username },
         })
 
+        console.log(process.env.NODE_ENV)
+
         if (user) {
             if (user.validPassword(data.password)) {
                 req.session.user = user

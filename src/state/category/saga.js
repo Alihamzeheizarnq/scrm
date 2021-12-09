@@ -1,29 +1,10 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
-import { toast } from 'react-toastify'
 
+import { toast } from 'react-toastify'
 import axios from 'axios'
 
-import {
-    CategoryCreateError,
-    CategoryCreateSuccess,
-    CategoryDeleteError,
-    CategoryDeleteSuccess,
-    CategoryEditSuccess,
-    CategoryListDelete,
-    CategoryListDeleteClear,
-    CategorySelectError,
-    CategorySelectRequest,
-    CategorySelectSuccess,
-    ShowCategoryModal,
-    ShowModalEditOpen,
-} from './action'
-import {
-    CATEGORY_CREATE_REQUEST,
-    CATEGORY_DELETE_REQUEST,
-    CATEGORY_EDIT_REQUEST,
-    CATEGORY_LIST_DELETE_ADD,
-    CATEGORY_SELECT_REQUEST,
-} from './action-type'
+import * as ActionCreators from './action'
+import * as Actions from './action-type'
 
 function* createCategory(action) {
     const args = {
@@ -33,8 +14,8 @@ function* createCategory(action) {
     }
     try {
         const category = yield call(axios, args)
-        yield put(CategoryCreateSuccess(category.data.category))
-        yield put(ShowCategoryModal(false))
+        yield put(ActionCreators.CategoryCreateSuccess(category.data.category))
+        yield put(ActionCreators.ShowCategoryModal(false))
         yield toast.success('دسته بندی با موفقیت ثبت گردید')
     } catch (e) {
         if (e.response.status == 401) {
@@ -44,7 +25,7 @@ function* createCategory(action) {
 
             yield toast.error('هویت نامعتبر !')
         }
-        yield put(CategoryCreateError(e))
+        yield put(ActionCreators.CategoryCreateError(e))
     }
 }
 
@@ -56,17 +37,17 @@ function* selectCategory() {
     try {
         const category = yield call(axios, args)
 
-        yield put(CategorySelectSuccess(category.data.category))
+        yield put(ActionCreators.CategorySelectSuccess(category.data.category))
     } catch (e) {
-        yield put(CategorySelectError(e))
+        yield put(ActionCreators.CategorySelectError(e))
     }
 }
 
 function* deleteCategory(action) {
     if (action.status) {
-        yield put(CategoryListDelete(action.payload))
+        yield put(ActionCreators.CategoryListDelete(action.payload))
     } else {
-        yield put(CategoryListDeleteClear(action.payload))
+        yield put(ActionCreators.CategoryListDeleteClear(action.payload))
     }
     console.log(action)
 }
@@ -81,12 +62,12 @@ function* deleteCategoryServer(action) {
         const status = yield call(axios, args)
 
         if (status.data.status) {
-            yield put(CategoryDeleteSuccess(action.payload))
-            yield put(CategorySelectRequest())
+            yield put(ActionCreators.CategoryDeleteSuccess(action.payload))
+            yield put(ActionCreators.CategorySelectRequest())
             yield toast.warning('دسته بندی با موفقیت  حذف گردید')
         }
     } catch (error) {
-        yield put(CategoryDeleteError(error))
+        yield put(ActionCreators.CategoryDeleteError(error))
     }
 }
 
@@ -97,19 +78,17 @@ function* editCategoryServer(action) {
         data: action.payload,
     }
     try {
-        const category = yield call(axios, args);
-
-        yield put(CategoryEditSuccess(action.payload));
-        yield put(ShowModalEditOpen(false));
+        yield call(axios, args)
+        yield put(ActionCreators.CategoryEditSuccess(action.payload))
+        yield put(ActionCreators.ShowModalEditOpen(false))
         yield toast.success('دسته بندی با موفقیت  ویرایش گردید')
-
     } catch (error) {}
 }
 function* categorySaga() {
-    yield takeEvery(CATEGORY_CREATE_REQUEST, createCategory)
-    yield takeEvery(CATEGORY_SELECT_REQUEST, selectCategory)
-    yield takeEvery(CATEGORY_LIST_DELETE_ADD, deleteCategory)
-    yield takeEvery(CATEGORY_DELETE_REQUEST, deleteCategoryServer)
-    yield takeEvery(CATEGORY_EDIT_REQUEST, editCategoryServer)
+    yield takeEvery(Actions.CATEGORY_CREATE_REQUEST, createCategory)
+    yield takeEvery(Actions.CATEGORY_SELECT_REQUEST, selectCategory)
+    yield takeEvery(Actions.CATEGORY_LIST_DELETE_ADD, deleteCategory)
+    yield takeEvery(Actions.CATEGORY_DELETE_REQUEST, deleteCategoryServer)
+    yield takeEvery(Actions.CATEGORY_EDIT_REQUEST, editCategoryServer)
 }
 export default categorySaga

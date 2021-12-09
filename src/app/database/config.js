@@ -17,11 +17,12 @@ module.exports = {
             collation: 'utf8_unicode_ci',
             collate: 'utf8_unicode_ci',
         },
+        logging: false,
     },
     test: {
-        username: process.env.CI_DB_USERNAME,
-        password: process.env.CI_DB_PASSWORD,
-        database: process.env.CI_DB_NAME,
+        username: process.env.TEST_DB_USERNAME,
+        password: process.env.TEST_DB_PASSWORD,
+        database: process.env.TEST_DB_NAME,
         host: '127.0.0.1',
         port: 3306,
         dialect: 'mysql',
@@ -29,6 +30,7 @@ module.exports = {
         dialectOptions: {
             bigNumberStrings: true,
         },
+        logging: false,
     },
     production: {
         username: 'root',
@@ -46,5 +48,6 @@ module.exports = {
                 // ca: fs.readFileSync(__dirname + '/mysql-ca-master.crt')
             },
         },
+        logging: false,
     },
 }

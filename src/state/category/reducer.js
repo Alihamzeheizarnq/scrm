@@ -1,18 +1,4 @@
-import {
-    CATEGORY_CREATE_ERROR,
-    CATEGORY_CREATE_REQUEST,
-    CATEGORY_CREATE_SUCCESS_REQUEST,
-    CATEGORY_DELETE_SUCCESS_REQUEST,
-    CATEGORY_EDIT_DATA,
-    CATEGORY_EDIT_SUCCESS_REQUEST,
-    CATEGORY_LIST_DELETE,
-    CATEGORY_LIST_DELETE_CLEAR,
-    CATEGORY_SELECT_ERROR,
-    CATEGORY_SELECT_SUCCESS_REQUEST,
-    SHOW_CATEGORY_DELETE_MODAL_OPEN,
-    SHOW_CATEGORY_EDIT_MODAL_OPEN,
-    SHOW_CATEGORY_MODAL,
-} from './action-type'
+import * as Actions from './action-type'
 
 const initState = {
     data: null,
@@ -29,7 +15,7 @@ const initState = {
 
 const reducer = (state = initState, action) => {
     switch (action.type) {
-        case CATEGORY_CREATE_REQUEST:
+        case Actions.CATEGORY_CREATE_REQUEST:
             return {
                 ...state,
                 data: action.payload,
@@ -37,14 +23,14 @@ const reducer = (state = initState, action) => {
                 error: null,
             }
 
-        case CATEGORY_CREATE_SUCCESS_REQUEST:
+        case Actions.CATEGORY_CREATE_SUCCESS_REQUEST:
             return {
                 ...state,
                 category: [...state.category, action.payload],
                 data: null,
                 error: null,
             }
-        case CATEGORY_CREATE_ERROR:
+        case Actions.CATEGORY_CREATE_ERROR:
             return {
                 ...state,
                 data: null,
@@ -52,7 +38,7 @@ const reducer = (state = initState, action) => {
                 error: action.payload,
             }
 
-        case CATEGORY_SELECT_SUCCESS_REQUEST:
+        case Actions.CATEGORY_SELECT_SUCCESS_REQUEST:
             return {
                 ...state,
                 data: null,
@@ -60,7 +46,7 @@ const reducer = (state = initState, action) => {
                 error: [],
             }
 
-        case CATEGORY_SELECT_ERROR:
+        case Actions.CATEGORY_SELECT_ERROR:
             return {
                 ...state,
                 data: null,
@@ -68,48 +54,48 @@ const reducer = (state = initState, action) => {
                 error: action.payload,
             }
 
-        case SHOW_CATEGORY_MODAL:
+        case Actions.SHOW_CATEGORY_MODAL:
             return {
                 ...state,
                 showModel: action.payload,
             }
-        case CATEGORY_LIST_DELETE:
+        case Actions.CATEGORY_LIST_DELETE:
             console.log(action)
             return {
                 ...state,
                 delete: [...state.delete, action.payload],
             }
-        case CATEGORY_LIST_DELETE_CLEAR:
+        case Actions.CATEGORY_LIST_DELETE_CLEAR:
             return {
                 ...state,
                 delete: state.delete.filter((item) => item != action.payload),
             }
-        case SHOW_CATEGORY_DELETE_MODAL_OPEN:
+        case Actions.SHOW_CATEGORY_DELETE_MODAL_OPEN:
             return {
                 ...state,
                 deleteModel: action.payload,
             }
 
-        case CATEGORY_DELETE_SUCCESS_REQUEST:
+        case Actions.CATEGORY_DELETE_SUCCESS_REQUEST:
             return {
                 ...state,
                 delete: [],
                 deleteModel: false,
             }
 
-        case SHOW_CATEGORY_EDIT_MODAL_OPEN:
+        case Actions.SHOW_CATEGORY_EDIT_MODAL_OPEN:
             return {
                 ...state,
                 editModal: action.payload,
             }
 
-        case CATEGORY_EDIT_DATA:
+        case Actions.CATEGORY_EDIT_DATA:
             return {
                 ...state,
                 edit: action.payload,
             }
 
-        case CATEGORY_EDIT_SUCCESS_REQUEST:
+        case Actions.CATEGORY_EDIT_SUCCESS_REQUEST:
             return {
                 ...state,
                 category: state.category.filter((item) => {
