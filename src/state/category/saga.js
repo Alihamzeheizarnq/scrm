@@ -14,7 +14,6 @@ import {
 } from './action'
 import {
     CATEGORY_CREATE_REQUEST,
-    CATEGORY_LIST_DELETE,
     CATEGORY_LIST_DELETE_ADD,
     CATEGORY_SELECT_REQUEST,
 } from './action-type'

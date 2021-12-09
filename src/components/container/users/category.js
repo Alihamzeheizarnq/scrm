@@ -76,7 +76,7 @@ const CategoryCrate = ({
                 </a>
                 <div className="customizer-content p-2 ps ps--active-y">
                     <h4 className="text-uppercase mb-0 mt-n50">
-                        افزودن دسته بندی{' '}
+                        افزودن دسته بندی
                     </h4>
                     <hr />
 

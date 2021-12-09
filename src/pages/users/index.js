@@ -45,7 +45,7 @@ const App = () => {
                                     <h6 className="text-uppercase mb-1">
                                         CHANNELS
                                     </h6>
-                                   
+
                                     <h6 className="text-uppercase mb-1">
                                         SETTINGS
                                     </h6>
@@ -55,7 +55,7 @@ const App = () => {
                                                 href="javascript:void(0);"
                                                 className="d-flex align-items-center"
                                             >
-                                                <i className="bx bx-tag mr-50" />{' '}
+                                                <i className="bx bx-tag mr-50" />
                                                 Add Tag
                                             </a>
                                         </li>
@@ -91,7 +91,7 @@ const App = () => {
                                                 href="javascript:void(0);"
                                                 className="d-flex align-items-center"
                                             >
-                                                <i className="bx bx-block mr-50" />{' '}
+                                                <i className="bx bx-block mr-50" />
                                                 Blocked Contact
                                             </a>
                                         </li>
@@ -151,8 +151,9 @@ const App = () => {
                                 </div>
                             </div>
                             <div className="chat-sidebar-list-wrapper pt-2 ps ps__rtl ps--active-y">
-                               
-                                <h6 className="px-2 pt-2 pb-25 mb-0">پیام ها</h6>
+                                <h6 className="px-2 pt-2 pb-25 mb-0">
+                                    پیام ها
+                                </h6>
                                 <ul className="chat-sidebar-list">
                                     <li className>
                                         <div className="d-flex align-items-center">
@@ -167,7 +168,7 @@ const App = () => {
                                             </div>
                                             <div className="chat-sidebar-name">
                                                 <h6 className="mb-0">
-                                                    علی حمزه ای 
+                                                    علی حمزه ای
                                                 </h6>
                                                 <span className="text-muted">
                                                     Cake pie
@@ -188,7 +189,7 @@ const App = () => {
                                             </div>
                                             <div className="chat-sidebar-name">
                                                 <h6 className="mb-0">
-                                                    توحید ناطقی 
+                                                    توحید ناطقی
                                                 </h6>
                                                 <span className="text-muted">
                                                     jelly jelly
@@ -197,7 +198,7 @@ const App = () => {
                                         </div>
                                     </li>
                                 </ul>
-                            
+
                                 <div
                                     className="ps__rail-x"
                                     style={{ left: 0, bottom: 0 }}
@@ -282,21 +283,21 @@ const App = () => {
                                                             className="dropdown-item"
                                                             href="JavaScript:void(0);"
                                                         >
-                                                            <i className="bx bx-pin mr-25" />{' '}
+                                                            <i className="bx bx-pin mr-25" />
                                                             Pin to top
                                                         </a>
                                                         <a
                                                             className="dropdown-item"
                                                             href="JavaScript:void(0);"
                                                         >
-                                                            <i className="bx bx-trash mr-25" />{' '}
+                                                            <i className="bx bx-trash mr-25" />
                                                             Delete chat
                                                         </a>
                                                         <a
                                                             className="dropdown-item"
                                                             href="JavaScript:void(0);"
                                                         >
-                                                            <i className="bx bx-block mr-25" />{' '}
+                                                            <i className="bx bx-block mr-25" />
                                                             Block
                                                         </a>
                                                     </span>
