@@ -1,6 +1,7 @@
 const moment = require('moment')
 const EmailJob = require('../../../../jobs/EmailJob')
 const SmsJob = require('../../../../jobs/SmsJob')
+const { getIo } = require('../../../../service/socketService')
 const { CategoryRequest } = require('../../../request/v1/CategoryRequest')
 const categoryTransform = require('../../../transform/v1/categoryTranform.')
 const Controller = require('../../controller')
@@ -68,6 +69,11 @@ module.exports = new (class UserCategoryController extends Controller {
 
     async edit(req, res) {
         const id = req.params.id
+
+       const io =  getIo();
+
+
+      
         try {
             const status = await this.model.Category.update(
                 {
@@ -82,7 +88,6 @@ module.exports = new (class UserCategoryController extends Controller {
             }
         } catch (error) {
             res.json({ status: error }).status(500)
-
         }
     }
 })()

@@ -1,6 +1,8 @@
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
+import { useEffect, useState } from 'react'
+
+import { SocketContext, socket } from '../context/socket'
 
 const ParenrElement = ({ children, ...props }) => {
     const router = useRouter()
@@ -22,9 +24,11 @@ const ParenrElement = ({ children, ...props }) => {
     }, [router, props.get_sidebar])
 
     return (
-        <div className={className} {...props}>
-            {children}
-        </div>
+        <SocketContext.Provider value={socket}>
+            <div className={className} {...props}>
+                {children}
+            </div>
+        </SocketContext.Provider>
     )
 }
 

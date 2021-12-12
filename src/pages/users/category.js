@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { connect } from 'react-redux'
+import io from 'socket.io-client'
 
 import {
     CategoryEditData,
@@ -13,14 +14,22 @@ import CategoryCrate from '../../components/container/users/category'
 import CategoryDelete from '../../components/container/users/delete-category'
 import CategoryEdit from '../../components/container/users/edit-category'
 import DataTable from '../../components/DataTabl'
+import { SocketContext } from '../../context/socket'
 
 function WithMultipleCheckboxes(props) {
+    const socket = useContext(SocketContext)
+
     let handleDelete = (cellContent, row) => {
         props.editModal(true)
         props.editData(row)
     }
+
     useEffect(() => {
         props.CategorySelectRequest()
+
+        socket.on('msg', (value) => {
+            props.editModal(true)
+        })
     }, [])
 
     const data = props.category

@@ -7,6 +7,7 @@ const session = require('express-session')
 
 const db = require('./app/models')
 const Cron = require('./app/service/cronService')
+const { setIo } = require('./app/service/socketService')
 
 dotEnv.config({ path: path.resolve('..', '.env') })
 
@@ -41,11 +42,14 @@ app.prepare().then(() => {
         .authenticate()
         .then(() => {
             console.log('Connection has been established successfully.')
-            app.listen(process.env.PORT, () => {
+            const server = app.listen(process.env.PORT, () => {
                 console.log(
                     `running serevr localhost:${process.env.PORT} ${process.env.NODE_ENV} mode....`,
                 )
             })
+
+            setIo(server)
+            console.log()
         })
         .catch((err) => {
             console.error('Unable to connect to the database:', err)
